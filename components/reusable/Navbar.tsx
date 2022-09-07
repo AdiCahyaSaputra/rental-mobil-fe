@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className='bg-black p-1.5 text-white'>
+      <nav className='bg-black p-1.5 text-white fixed top-0 z-10 w-full'>
         <Container>
           <div className='flex justify-between'>
             <div className='flex space-x-2 items-center'>
@@ -27,8 +27,8 @@ const Navbar: React.FC = () => {
             </button>
           </div>
         </Container>
+        <div onClick={() => setActive(!active)} className={`${active ? 'block' : 'hidden'} fixed inset-0 bg-black/70 z-10`}></div>
       </nav>
-      <div onClick={() => setActive(!active)} className={`${active ? 'block' : 'hidden'} fixed inset-0 bg-black/70 z-10`}></div>
     </>
   )
 }
