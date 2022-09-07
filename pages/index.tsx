@@ -1,11 +1,11 @@
-import Container from 'components/reusable/Container'
+import Navbar from 'components/reusable/Navbar'
 import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
   return (
-    <Container>
-      <h1 className='text-lg font-bold'>Hello World</h1>
-    </Container>
+    <>
+      <Navbar/>
+    </>
   )
 }
 
