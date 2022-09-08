@@ -1,5 +1,5 @@
 * {
-  transition: all .3s;
+  transition: all .3s ease-in-out;
   scroll-behavior: smooth;
 }
 
