@@ -1,6 +1,6 @@
 // lib
 import type { NextPage } from 'next'
-import NavItem from 'lib/interface/NavItem'
+import NavItemInterface from 'lib/interface/NavItemInterface'
 
 // components
 import Navbar from 'components/reusable/Navbar'
@@ -11,7 +11,7 @@ import ContentSection from 'components/section/ContentSection'
 import UserIcon from '../asset/svg/user.svg'
 import RegisterIcon from '../asset/svg/register.svg'
 
-const navItems: NavItem[] = [
+const navItems: NavItemInterface[] = [
   {
     link: '/login',
     name: 'Login',
