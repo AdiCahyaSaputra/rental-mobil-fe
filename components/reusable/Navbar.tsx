@@ -27,9 +27,14 @@ const Navbar: React.FC<Props> = ({ navItems }) => {
               <div className='w-4 aspect-square bg-white rounded-r-lg rounded-l-none rounded-b-sm'></div>
             </div>
 
-            <div className={`z-20 text-sm text-white/70 p-4 md:p-0 fixed inset-y-0 ${active ? 'right-0' : '-right-full'} w-6/12 md:w-max md:static bg-black md:bg-transparent flex flex-col md:flex-row space-y-2 md:space-x-2 md:space-y-0`}>
+            <div className={`z-20 text-sm text-white/70 p-4 md:p-0 fixed inset-y-0 ${active ? 'right-0' : '-right-full'} w-6/12 md:w-max md:static bg-black md:bg-transparent flex flex-col md:flex-row space-y-2 md:space-x-4 md:space-y-0`}>
               {navItems.map((navItem, index) => (
-                <a key={index} onClick={() => router.push(navItem.link)} className='hover:text-white'>{navItem.name}</a>
+
+                <div key={index} className="flex items-center space-x-2">
+                  {navItem.icon}
+                  <a onClick={() => router.push(navItem.link)} className='font-bold hover:text-white'>{navItem.name}</a>
+                </div>
+
               ))}
             </div>
 

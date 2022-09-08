@@ -1,3 +1,4 @@
+// Components
 import Logo from "components/reusable/Logo"
 
 const HeroSection: React.FC = () => {
