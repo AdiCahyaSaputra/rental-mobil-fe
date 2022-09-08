@@ -37,7 +37,6 @@ const ContentSection: React.FC = () => {
               type="text"
               className="py-1.5 px-3 w-10/12 md:w-8/12 outline-none shadow-md bg-white"
               placeholder="Cari merek mobil"
-              onFocus={(e) => e.target.focus({ preventScroll: true })}
             />
             <button className="p-1.5 bg-white shadow-md">
               <SearchIcon className='w-6 p-1 aspect-square'/>

@@ -1,6 +1,7 @@
 // Icon
 import UserIcon from '../../asset/svg/user.svg'
 import PlusIcon from '../../asset/svg/plus.svg'
+import ImagePlaceholder from './ImagePlaceholder'
 
 type Props = {
   name: string,
@@ -14,7 +15,7 @@ const ProductCard: React.FC<Props> = ({ name, modelYear, color, owner }) => {
   return (
     <div className="cursor-pointer rounded-b-lg col-span-6 md:col-span-3 shadow-md">
 
-      <div className="aspect-video bg-gray-500"></div>
+      <ImagePlaceholder />
 
       <div className="p-2">
 
