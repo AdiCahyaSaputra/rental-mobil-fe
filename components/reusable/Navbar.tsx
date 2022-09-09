@@ -1,13 +1,13 @@
 // Lib
 import { useRouter } from "next/router"
 import { useState } from 'react'
-import NavItem from "lib/interface/NavItem"
+import NavItemInterface from "lib/interface/NavItemInterface"
 
 // Components
 import Container from "components/reusable/Container"
 
 type Props = {
-  navItems: NavItem[]
+  navItems: NavItemInterface[]
 }
 
 const Navbar: React.FC<Props> = ({ navItems }) => {
