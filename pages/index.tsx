@@ -6,6 +6,7 @@ import NavItemInterface from 'lib/interface/NavItemInterface'
 import Navbar from 'components/reusable/Navbar'
 import HeroSection from 'components/section/HeroSection'
 import ContentSection from 'components/section/ContentSection'
+import FooterSection from 'components/section/FooterSection'
 
 // Icons
 import UserIcon from '../asset/svg/user.svg'
@@ -32,8 +33,7 @@ const Home: NextPage = () => {
       <Navbar navItems={navItems} />
       <HeroSection />
       <ContentSection />
-
-      <div className='min-h-screen bg-black'></div>
+      <FooterSection />
 
     </main>
   )
