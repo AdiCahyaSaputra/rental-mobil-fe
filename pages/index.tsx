@@ -1,6 +1,7 @@
 // lib
 import type { NextPage } from 'next'
 import NavItemInterface from 'lib/interface/NavItemInterface'
+import Head from 'next/head'
 
 // components
 import Navbar from 'components/reusable/Navbar'
@@ -28,14 +29,19 @@ const navItems: NavItemInterface[] = [
 const Home: NextPage = () => {
 
   return (
-    <main className='select-none no-scrollbar'>
+    <>
+      <Head>
+        <title>Rental Mobil</title>
+      </Head>
+      <main className='select-none no-scrollbar'>
 
-      <Navbar navItems={navItems} />
-      <HeroSection />
-      <ContentSection />
-      <FooterSection />
+        <Navbar navItems={navItems} />
+        <HeroSection />
+        <ContentSection />
+        <FooterSection />
 
-    </main>
+      </main>
+    </>
   )
 }
 
