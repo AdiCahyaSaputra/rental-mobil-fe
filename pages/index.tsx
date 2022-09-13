@@ -20,7 +20,7 @@ const navItems: NavItemInterface[] = [
     icon: <UserIcon className='w-4 aspect-square' />
   },
   {
-    link: '/register',
+    link: '/registrasi',
     name: 'Registrasi',
     icon: <RegisterIcon className='w-4 aspect-square' />
   },
