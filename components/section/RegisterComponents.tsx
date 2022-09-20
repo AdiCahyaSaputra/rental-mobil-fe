@@ -2,15 +2,21 @@
 import { useState } from "react"
 import { Formik, Field } from 'formik'
 import { validateRegisterForm } from "lib/utils/validation"
+import useAuth from "lib/hooks/useAuth"
 
 // Components
 import RoleCard from "components/reusable/RoleCard"
 
 // Interface 
-import UserData from 'lib/interface/UserData'
+import RegisterDataInterface from 'lib/interface/RegisterDataInterface'
 
 // Icons
 import EditIcon from '../../asset/svg/edit.svg'
+import SubmitButton from "components/reusable/SubmitButton"
+
+type Props = {
+  setResponse: Function,
+}
 
 const inputElements = [
   { type: 'text', placeholder: 'Nama', name: 'name' },
@@ -36,17 +42,19 @@ const initFormValue = {
   role_id: 1
 }
 
-const submitHandler = (values: UserData, { setSubmitting }: any) => {
-  const { name, email, address, mobile_phone, password, password_confirmation, role_id } = values
-
-  setSubmitting(true)
-  console.log(values)
-}
-
-const RegisterComponents: React.FC = () => {
+const RegisterComponents: React.FC<Props> = ({ setResponse }) => {
 
   const [openModalRole, setOpenModalRole] = useState(false)
   const [role, setRole] = useState({ id: 1, name: 'CUSTOMER' })
+
+  const { register } = useAuth()
+
+  const submitHandler = async (values: RegisterDataInterface, { setSubmitting }: any) => {
+    const res = await register(values)
+
+    setResponse(res)
+    setSubmitting(true)
+  }
 
   return (
     <>
@@ -54,8 +62,6 @@ const RegisterComponents: React.FC = () => {
 
         {({ values, errors, isSubmitting, handleSubmit, touched }: any) => (
           <>
-            <pre className="overflow-auto">{JSON.stringify(values, null, 2)}</pre>
-
             <form className='mt-6' onSubmit={e => {
               e.preventDefault()
               handleSubmit(e)
@@ -90,19 +96,7 @@ const RegisterComponents: React.FC = () => {
 
               </div>
 
-              <div className='mt-12'>
-
-                {isSubmitting ? (
-                  <button disabled className='font-bold py-2 px-4 bg-green-800 hover:shadow-md hover:shadow-green-800/80 w-full'>
-                    Bentar...
-                  </button>
-                ) : (
-                  <button disabled={Object.keys(errors).length !== 0} type='submit' className='font-bold py-2 px-4 bg-green-600 hover:shadow-md hover:shadow-green-600/80 w-full disabled:bg-green-800 disabled:text-white/60 disabled:shadow-green-800'>
-                    Register
-                  </button>
-                )}
-
-              </div>
+              <SubmitButton name="Register" isSubmitting={isSubmitting} errors={errors} />
 
             </form>
 

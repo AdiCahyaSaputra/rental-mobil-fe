@@ -1,29 +1,51 @@
 // Interface
-import UserData from "lib/interface/UserData"
+import LoginDataInterface from "lib/interface/LoginDataInterface"
+import RegisterDataInterface from "lib/interface/RegisterDataInterface"
 
-type AuthProps = {
-  middleware: string,
-  redirectIfAuthenticated: string
-}
+const BASE_API_URL = "http://localhost:8000/api/v1/"
 
-const useAuth = ({ middleware, redirectIfAuthenticated }: AuthProps) => {
-  const register = async (data: UserData) => {
-    const url = 'http://localhost:8000/api/v1/user/register/'
+const useAuth = () => {
+
+  const register = async (values: RegisterDataInterface) => {
+
+    const url = BASE_API_URL + 'user/register'
     const req = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(values)
     })
 
     const res = await req.json()
 
-    return res
+    return {
+      message: res.message, status: req.status
+    }
+  }
+
+  const login = async (values: LoginDataInterface) => {
+
+    const url = BASE_API_URL + 'user/login'
+    const req = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(values)
+    })
+
+    const res = await req.json()
+
+    return {
+      message: res.message, status: req.status
+    }
+
   }
 
   return {
-    register
+    register,
+    login
   }
 
 }

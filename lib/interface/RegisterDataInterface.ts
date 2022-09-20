@@ -1,4 +1,4 @@
-export default interface UserData {
+export default interface RegisterDataInterface {
   name: string,
   email: string,
   mobile_phone: string,
