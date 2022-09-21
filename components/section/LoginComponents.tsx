@@ -41,7 +41,6 @@ const LoginComponents: React.FC<Props> = ({ setResponse }) => {
 
         {({ values, errors, isSubmitting, handleSubmit, touched }: any) => (
           <>
-            <pre className="overflow-auto">{JSON.stringify(values, null, 2)}</pre>
 
             <form className='mt-6' onSubmit={e => {
               e.preventDefault()
