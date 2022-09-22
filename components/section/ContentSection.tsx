@@ -1,25 +1,10 @@
 // Lib
-import ProductItemInterface from "lib/interface/ProductItemInterface"
+import { fakeData } from "lib/utils/data"
 
 // Components
 import Container from "components/reusable/Container"
 import ProductCard from "components/reusable/ProductCard"
-
-// Icons
-import SearchIcon from '../../asset/svg/search.svg'
-
-const fakeData: ProductItemInterface[] = [
-
-  { name: 'Toyota', modelYear: '2022', color: 'Merah', owner: 'John Doe' },
-  { name: 'Daihatsu', modelYear: '1996', color: 'Hijau', owner: 'Mark Hill' },
-  { name: 'Jeep', modelYear: '2013', color: 'Biru', owner: 'Rose Notch' },
-  { name: 'Mustibisa', modelYear: '2006', color: 'Kuning', owner: 'Jamal Eron' },
-  { name: 'Hyundai', modelYear: '1987', color: 'Hitam', owner: 'George Ben' },
-  { name: 'Isuzu', modelYear: '1999', color: 'Pink', owner: 'Natalie Fang' },
-  { name: 'Kawasaki', modelYear: '2017', color: 'Coklat', owner: 'Marry Noe' },
-  { name: 'Nissan', modelYear: '2001', color: 'Abu-Abu', owner: 'Gary Peter' },
-
-]
+import Search from "components/reusable/Search"
 
 const ContentSection: React.FC = () => {
 
@@ -31,18 +16,7 @@ const ContentSection: React.FC = () => {
         <div className="-z-10 absolute top-0 inset-x-0 h-1/2 bg-black"></div>
 
         <Container>
-          <div className="flex justify-center items-center">
-
-            <input
-              type="text"
-              className="py-1.5 px-3 w-10/12 md:w-8/12 outline-none shadow-md bg-white"
-              placeholder="Cari merek mobil"
-            />
-            <button className="p-1.5 bg-white shadow-md">
-              <SearchIcon className='w-6 p-1 aspect-square' />
-            </button>
-
-          </div>
+          <Search />
         </Container>
 
       </div>

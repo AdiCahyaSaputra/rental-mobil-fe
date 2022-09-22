@@ -11,22 +11,28 @@ export const middleware = async (req: NextRequest) => {
   // Middleware Guest
   if (req.cookies.get('token')) {
 
-    if (guest) {
-      return NextResponse.redirect(new URL('/', req.url))
+    if (guest || req.nextUrl.pathname === '/') {
+      return NextResponse.redirect(new URL('/beranda', req.url))
     }
 
     return NextResponse.next()
 
   }
 
-  // Middleware Auth (when token is undefined)
-  if(guest) return NextResponse.next()
-
-  return NextResponse.redirect(new URL('/login', req.url))
+  // When token is undefined
+  if (guest) return NextResponse.next()
 
 }
 
+// export function middleware() {
+//   return NextResponse.next()
+// }
 
 export const config = {
-  matcher: ['/', '/login', '/registrasi', '/test']
+  matcher: [
+    '/', '/login',
+    '/registrasi',
+    '/test', '/beranda']
 }
+
+// Middleware Guest -> ['/', 'login', 'registrasi']

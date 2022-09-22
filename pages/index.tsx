@@ -33,7 +33,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Rental Mobil</title>
       </Head>
-      <main className='select-none no-scrollbar'>
+      <main className='select-none no-scrollbar bg-slate-100'>
 
         <Navbar navItems={navItems} />
         <HeroSection />

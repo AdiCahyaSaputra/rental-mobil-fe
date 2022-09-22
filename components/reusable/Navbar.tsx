@@ -1,19 +1,32 @@
 // Lib
 import { useRouter } from "next/router"
 import { useState } from 'react'
-import NavItemInterface from "lib/interface/NavItemInterface"
 
 // Components
 import Container from "components/reusable/Container"
 
+// Interface
+import NavItemInterface from "lib/interface/NavItemInterface"
+
 type Props = {
   navItems: NavItemInterface[]
+}
+
+// For navbar
+const checkCustomHandler = (navItem: NavItemInterface, defaultHandler: Function) => {
+  if (navItem.customHandler) {
+    return navItem.customHandler(navItem.link)
+  }
+
+  return defaultHandler(navItem.link)
 }
 
 const Navbar: React.FC<Props> = ({ navItems }) => {
 
   const router = useRouter()
   const [active, setActive] = useState(false)
+
+  const defaultHandler = (link: string) => router.push(link)
 
   return (
     <>
@@ -32,7 +45,7 @@ const Navbar: React.FC<Props> = ({ navItems }) => {
 
                 <div key={index} className="flex items-center space-x-2">
                   {navItem.icon}
-                  <a onClick={() => router.push(navItem.link)} className='font-bold hover:text-white'>{navItem.name}</a>
+                  <a onClick={() => checkCustomHandler(navItem, defaultHandler)} className={`font-bold ${navItem.textColor ?? 'hover:text-white'}`}>{navItem.name}</a>
                 </div>
 
               ))}

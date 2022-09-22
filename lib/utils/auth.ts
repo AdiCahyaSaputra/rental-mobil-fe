@@ -1,11 +1,5 @@
 import { NextRouter } from "next/router"
 
-export const getLocalStorageItem = (key: string) => {
-  if (typeof window !== 'undefined') {
-    return window.localStorage.getItem(key)
-  }
-}
-
 export const setAccessToken = async (token: string, router: NextRouter) => {
   const requestBody = { access_token: token }
 
@@ -20,4 +14,17 @@ export const setAccessToken = async (token: string, router: NextRouter) => {
   if (req.status !== 200) return console.log(req.statusText)
 
   return router.push('/')
+}
+
+export const destroyAccessToken = async (router: NextRouter) => {
+  const req = await fetch('/api/cookie/destroy', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+
+  if (req.status !== 200) return console.log(req.statusText)
+
+  return router.push('/login')
 }
