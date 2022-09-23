@@ -2,8 +2,9 @@
 import type { GetServerSideProps, NextPage } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { destroyAccessToken } from "lib/utils/auth"
+import { destroyAccessToken, middlewarePartDua } from "lib/utils/auth"
 import { fakeData } from "lib/utils/data"
+import useAuth from "lib/hooks/useAuth"
 
 // Components
 import Navbar from "components/reusable/Navbar"
@@ -25,11 +26,12 @@ import RegisterIcon from '../../asset/svg/register.svg'
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { token } = ctx.req.cookies
-  const isLogin = token ? true : false
+
+  middlewarePartDua(token)
 
   return {
     props: {
-      isLogin
+      token: token ?? null
     }
   }
 }
@@ -48,18 +50,22 @@ const GuestNavItems: NavItemInterface[] = [
 ]
 
 type Props = {
-  isLogin: boolean
+  token: null | string
 }
 
-const BerandaHome: NextPage<Props> = ({ isLogin }) => {
+const BerandaHome: NextPage<Props> = ({ token }) => {
 
   const router = useRouter()
+  const { logout } = useAuth()
 
   const logoutHandler = (link: string) => {
+
+    if (token) logout(token)
     destroyAccessToken(router)
+
   }
 
-  const navItems: NavItemInterface[] = [
+  const AuthNavItems: NavItemInterface[] = [
     {
       link: '/dashboard',
       name: 'Dashboard',
@@ -85,34 +91,38 @@ const BerandaHome: NextPage<Props> = ({ isLogin }) => {
         <title>Beranda</title>
       </Head>
 
-      <Navbar navItems={isLogin ? navItems : GuestNavItems} />
-      <section className="pb-20 select-none min-h-screen bg-slate-200">
+      <main className="select-none">
 
-        <div className="py-4 bg-white/60 backdrop-blur-md shadow-md shadow-white/60 sticky top-12 inset-x-0">
-          <Search />
-        </div>
+        <Navbar navItems={token ? AuthNavItems : GuestNavItems} />
+        <section className="pb-20 min-h-screen bg-slate-200">
 
-        <Container>
-          <div className="mt-14">
+          <div className="py-4 bg-white/60 backdrop-blur-md shadow-md shadow-white/60 sticky top-12 inset-x-0">
+            <Search />
+          </div>
 
-            <div className="grid grid-cols-12 gap-4">
+          <Container>
+            <div className="mt-14">
 
-              {fakeData.map((data, index: number) => (
-                <ProductCard
-                  name={data.name}
-                  modelYear={data.modelYear}
-                  color={data.color}
-                  owner={data.owner}
-                  key={index}
-                />
-              ))}
+              <div className="grid grid-cols-12 gap-4">
+
+                {fakeData.map((data, index: number) => (
+                  <ProductCard
+                    name={data.name}
+                    modelYear={data.modelYear}
+                    color={data.color}
+                    owner={data.owner}
+                    key={index}
+                  />
+                ))}
+
+              </div>
 
             </div>
+          </Container>
 
-          </div>
-        </Container>
+        </section>
 
-      </section>
+      </main>
 
       <FooterSection />
     </>

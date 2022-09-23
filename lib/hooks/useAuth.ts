@@ -1,15 +1,16 @@
 // Lib
 import { setAccessToken } from "lib/utils/auth"
 import { useRouter } from "next/router"
+import { useEffect } from "react"
 
 // Interface
 import LoginDataInterface from "lib/interface/LoginDataInterface"
 import RegisterDataInterface from "lib/interface/RegisterDataInterface"
-import { useEffect } from "react"
 
 const BASE_API_URL = "http://localhost:8000/api/v1/"
 
 const useAuth = () => {
+
   const router = useRouter()
 
   const register = async (values: RegisterDataInterface) => {
@@ -64,9 +65,27 @@ const useAuth = () => {
 
   }
 
+  const logout = async (token: string) => {
+    const url = BASE_API_URL + 'user/logout'
+
+    const req = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+
+    if (req.status !== 200) return {
+      message: req.statusText,
+      status: req.status
+    }
+  }
+
   return {
     register,
-    login
+    login,
+    logout
   }
 
 }

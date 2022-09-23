@@ -30,9 +30,8 @@ export const middleware = async (req: NextRequest) => {
 
 export const config = {
   matcher: [
-    '/', '/login',
-    '/registrasi',
-    '/test', '/beranda']
+    '/', '/login', '/registrasi', '/test', '/beranda'
+  ]
 }
 
 // Middleware Guest -> ['/', 'login', 'registrasi']
