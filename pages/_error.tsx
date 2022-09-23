@@ -2,15 +2,15 @@ const Error = ({ statusCode }: any) => {
   return (
     <section className='h-screen bg-slate-100 flex items-center justify-center'>
 
-      <div>
+      <div className="text-center">
         <h1 className='text-xl font-extrabold'>
-          Ada <span className='text-red-600'>Error</span> nih
+          Error <span className='text-red-600'>Bang</span>
         </h1>
 
         {statusCode ? (
           <>
             <p className='text-sm mt-2 font-medium text-gray-500'>
-              Status Code Nya <span className='text-blue-600 font-bold'>{statusCode}</span>
+              <span className='text-blue-600 font-bold'>{statusCode}</span> {statusCode === 404 ? 'Doi not found' : 'Status code nya bang'}
             </p>
           </>
         ) : (
