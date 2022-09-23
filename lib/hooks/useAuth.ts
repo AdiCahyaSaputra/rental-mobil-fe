@@ -1,7 +1,6 @@
 // Lib
 import { setAccessToken } from "lib/utils/auth"
 import { useRouter } from "next/router"
-import { useEffect } from "react"
 
 // Interface
 import LoginDataInterface from "lib/interface/LoginDataInterface"
@@ -51,10 +50,6 @@ const useAuth = () => {
 
     if (res.access_token) {
       setAccessToken(res.access_token, router)
-
-      useEffect(() => {
-        router.prefetch('/')
-      }, [])
     }
 
     return {
