@@ -1,5 +1,4 @@
 // Interface
-import NavItemInterface from "lib/interface/NavItemInterface";
 import ProductItemInterface from "lib/interface/ProductItemInterface";
 
 export const fakeData: ProductItemInterface[] = [
@@ -15,3 +14,4 @@ export const fakeData: ProductItemInterface[] = [
 
 ]
 
+export const nameToUrlFriendly = (name: string) => name.toLowerCase().split(' ').join('-')

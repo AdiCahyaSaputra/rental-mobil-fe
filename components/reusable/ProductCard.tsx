@@ -6,10 +6,10 @@ import PaintIcon from '../../asset/svg/paint.svg'
 import CalendarIcon from '../../asset/svg/calendar.svg'
 import SmallRarrIcon from '../../asset/svg/smallrarr.svg'
 
-const ProductCard: React.FC<ProductItemInterface> = ({ name, color, modelYear, owner }) => {
+const ProductCard: React.FC<ProductItemInterface> = ({ name, color, modelYear, owner, click }) => {
 
   return (
-    <article className="group overflow-hidden rounded-md bg-white cursor-pointer col-span-6 md:col-span-3 shadow-md">
+    <article onClick={click} className="group overflow-hidden rounded-md bg-white cursor-pointer col-span-6 md:col-span-3 shadow-md">
 
       <div className="p-4">
         <h1 className="line-clamp-1 text-lg tracking-wide font-extrabold">
