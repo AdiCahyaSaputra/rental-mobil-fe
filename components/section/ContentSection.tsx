@@ -1,5 +1,6 @@
 // Lib
-import { fakeData } from "lib/utils/data"
+import { fakeData, nameToUrlFriendly } from "lib/utils/data"
+import { useRouter } from "next/router"
 
 // Components
 import Container from "components/reusable/Container"
@@ -7,6 +8,15 @@ import ProductCard from "components/reusable/ProductCard"
 import Search from "components/reusable/Search"
 
 const ContentSection: React.FC = () => {
+
+  const router = useRouter()
+
+  const clickHandler = (name: string) => {
+
+    const urlFriendly = nameToUrlFriendly(name)
+    return router.push('/car/' + urlFriendly)
+
+  }
 
   return (
     <section className="min-h-screen">
@@ -30,6 +40,7 @@ const ContentSection: React.FC = () => {
               modelYear={data.modelYear}
               color={data.color}
               owner={data.owner}
+              click={() => clickHandler(data.name)}
             />
           ))}
         </div>
