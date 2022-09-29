@@ -1,26 +1,34 @@
 // Lib
-import type { GetServerSideProps, NextPage } from "next"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import { useState } from "react"
+import { getSingleCar } from "lib/utils/api";
+import { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 // Components
-import Container from "components/reusable/Container"
-import PagesWrapper from "components/reusable/PagesWrapper"
-import CreateCarComponents from "components/section/CreateCarComponents"
-import ErrNotify from "components/reusable/ErrNofify"
+import Container from "components/reusable/Container";
+import ErrNotify from "components/reusable/ErrNofify";
+import Logo from "components/reusable/Logo";
+import PagesWrapper from "components/reusable/PagesWrapper";
+import EditCarComponents from "components/section/EditCarComponents";
+
+// Interface
+import CarItemInterface from "lib/interface/CarItemInterface";
 
 // Icons
-import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
-import Logo from "components/reusable/Logo"
+import SmallLarrIcon from '../../../asset/svg/smalllarr.svg'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { token } = ctx.req.cookies
+  const { id } = ctx.query
+
+  const response = await getSingleCar(id)
 
   return {
     props: {
       token: token ?? null,
+      data: response.data
     }
   }
 
@@ -28,9 +36,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 type Props = {
   token: string | null,
+  data: CarItemInterface
 }
 
-const DashboardCreate: NextPage<Props> = ({ token }) => {
+const DashboardEdit: NextPage<Props> = ({ token, data }) => {
 
   const router = useRouter()
   const [response, setResponse] = useState({
@@ -41,9 +50,8 @@ const DashboardCreate: NextPage<Props> = ({ token }) => {
   return (
     <>
       <Head>
-        <title>Dashboard Create</title>
+        <title>Dashboard Edit</title>
       </Head>
-
       <PagesWrapper token={token}>
 
         <ErrNotify response={response} />
@@ -79,7 +87,7 @@ const DashboardCreate: NextPage<Props> = ({ token }) => {
 
                 <div className="mt-4">
 
-                  <CreateCarComponents setResponse={setResponse} token={token!} />
+                  <EditCarComponents car_id={router.query.id} data={data} setResponse={setResponse} token={token!} />
 
                 </div>
 
@@ -95,4 +103,4 @@ const DashboardCreate: NextPage<Props> = ({ token }) => {
   )
 }
 
-export default DashboardCreate
+export default DashboardEdit

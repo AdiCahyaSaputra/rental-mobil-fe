@@ -80,6 +80,7 @@ export const destroyCar = async (id: number, token: string) => {
 }
 
 export const createCar = async (token: string, data: CarItemInterface) => {
+
   const req = await fetch(`${BASE_API_URL}car/create`, {
     headers: {
       'Accept': 'application/json',
@@ -89,6 +90,27 @@ export const createCar = async (token: string, data: CarItemInterface) => {
     method: 'POST',
     body: JSON.stringify(data)
   })
+
+  const res = await req.json()
+
+  return {
+    status: req.status,
+    message: res.message
+  }
+}
+
+export const editCar = async (token: string, data: CarItemInterface, id: number) => {
+
+  const req = await fetch(`${BASE_API_URL}car/edit/${id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(data)
+  })
+
 
   const res = await req.json()
 

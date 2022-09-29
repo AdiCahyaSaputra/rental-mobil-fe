@@ -30,11 +30,11 @@ const DashboardItemCard: React.FC<Props> = ({ data, token }) => {
     message: ''
   })
 
-  const clickHandler = (brandCar: string, id: number) => {
+  const clickHandler = (brandCar: string, id: number, url: string) => {
 
     const urlFriendly = nameToUrlFriendly(brandCar)
     return router.push({
-      pathname: '/car/' + urlFriendly,
+      pathname: url + urlFriendly,
       query: { id }
     })
 
@@ -65,10 +65,10 @@ const DashboardItemCard: React.FC<Props> = ({ data, token }) => {
 
         <h1 className="text-lg font-bold text-black my-1.5">{data.brand_car}</h1>
 
-        <a onClick={() => clickHandler(data.brand_car, data.id)} className='text-sm text-blue-600 hover:underline'>Lihat Detail</a>
+        <a onClick={() => clickHandler(data.brand_car, data.id!, '/car/')} className='text-sm text-blue-600 hover:underline'>Lihat Detail</a>
 
         <div className='flex space-y-1.5 flex-col absolute top-4 right-4'>
-          <EditIcon className='w-6 rounded-sm cursor-pointer hover:bg-green-600 hover:shadow-md hover:shadow-green-600/30 aspect-square p-1 bg-green-700 fill-white' />
+          <EditIcon onClick={() => clickHandler(data.brand_car, data.id!, '/dashboard/edit/')} className='w-6 rounded-sm cursor-pointer hover:bg-green-600 hover:shadow-md hover:shadow-green-600/30 aspect-square p-1 bg-green-700 fill-white' />
           <TrashIcon onClick={() => setDialogActive(!dialogActive)} className='w-6 rounded-sm cursor-pointer hover:bg-red-600 hover:shadow-md hover:shadow-red-600/30 aspect-square p-1 bg-red-700 fill-white' />
         </div>
 
