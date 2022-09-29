@@ -28,39 +28,3 @@ export const destroyAccessToken = async (router?: NextRouter | null) => {
   if (router) return router.push('/login')
 }
 
-export const validateAccessToken = async (token: string) => {
-  const req = await fetch('http://localhost:8000/api/v1/user/validate', {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}`
-    }
-  })
-
-  const res = await req.json()
-
-  return {
-    status: req.status,
-    message: res.message
-  }
-}
-
-export const middlewarePartDua = async (token: string | undefined) => {
-  if (token) {
-
-    const validate = await validateAccessToken(token)
-
-    if (validate.status === 401) {
-
-      destroyAccessToken(null)
-      return {
-        redirect: {
-          permanent: false,
-          destination: '/login'
-        }
-      }
-
-    }
-
-  }
-}

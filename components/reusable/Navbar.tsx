@@ -27,6 +27,7 @@ const Navbar: React.FC<Props> = ({ navItems }) => {
   const [active, setActive] = useState(false)
 
   const defaultHandler = (link: string) => router.push(link)
+  const isNavItemsActive = (link: string) => router.pathname.startsWith(link)
 
   return (
     <>
@@ -45,7 +46,12 @@ const Navbar: React.FC<Props> = ({ navItems }) => {
 
                 <div key={index} className="flex items-center space-x-2">
                   {navItem.icon}
-                  <a onClick={() => checkCustomHandler(navItem, defaultHandler)} className={`font-bold ${navItem.textColor ?? 'hover:text-white'}`}>{navItem.name}</a>
+                  <a onClick={() => checkCustomHandler(navItem, defaultHandler)} className={`
+                    font-bold 
+                    ${isNavItemsActive(navItem.link) ? navItem.active ?? 'text-white hover:text-white/80' : navItem.textColor ?? 'hover:text-white'}
+                  `}>
+                    {navItem.name}
+                  </a>
                 </div>
 
               ))}

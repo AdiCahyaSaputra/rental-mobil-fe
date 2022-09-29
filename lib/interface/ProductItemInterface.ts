@@ -1,8 +1,8 @@
 import { MouseEventHandler } from "react";
 
 export default interface ProductItemInterface {
-  name: string,
-  modelYear: string,
+  brandCar: string,
+  modelYear: number,
   color: string,
   owner: string,
   click?: MouseEventHandler

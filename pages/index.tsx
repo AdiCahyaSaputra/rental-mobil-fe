@@ -1,7 +1,8 @@
 // lib
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import NavItemInterface from 'lib/interface/NavItemInterface'
 import Head from 'next/head'
+import { getCars } from 'lib/utils/api'
 
 // components
 import Navbar from 'components/reusable/Navbar'
@@ -9,9 +10,24 @@ import HeroSection from 'components/section/HeroSection'
 import ContentSection from 'components/section/ContentSection'
 import FooterSection from 'components/section/FooterSection'
 
+// Interface
+import { CarItemInterface } from 'lib/interface/CarItemInterface'
+
 // Icons
 import UserIcon from '../asset/svg/user.svg'
 import RegisterIcon from '../asset/svg/register.svg'
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+  const response = await getCars()
+
+  return {
+    props: {
+      data: response.data
+    }
+  }
+
+}
 
 const navItems: NavItemInterface[] = [
   {
@@ -26,7 +42,11 @@ const navItems: NavItemInterface[] = [
   },
 ]
 
-const Home: NextPage = () => {
+type Props = {
+  data: CarItemInterface[]
+}
+
+const Home: NextPage<Props> = ({ data }) => {
 
   return (
     <>
@@ -37,7 +57,7 @@ const Home: NextPage = () => {
 
         <Navbar navItems={navItems} />
         <HeroSection />
-        <ContentSection />
+        <ContentSection data={data} />
         <FooterSection />
 
       </main>

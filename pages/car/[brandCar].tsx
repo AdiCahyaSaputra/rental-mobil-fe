@@ -1,16 +1,16 @@
 // Lib
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { middlewarePartDua } from 'lib/utils/auth'
 import { useRouter } from 'next/router'
-import { fakeData, nameToUrlFriendly } from 'lib/utils/data'
+import { getSingleCar } from 'lib/utils/api'
+import { toTitleCase } from 'lib/utils/stringHelper'
 
 // Components
 import PagesWrapper from 'components/reusable/PagesWrapper'
 import Container from 'components/reusable/Container'
 
 // Interface
-import ProductItemInterface from 'lib/interface/ProductItemInterface'
+import CarItemInterface from 'lib/interface/CarItemInterface'
 
 // Icons
 import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
@@ -21,26 +21,14 @@ import MailIcon from '../../asset/svg/mail.svg'
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { token } = ctx.req.cookies
-  const { name } = ctx.query
+  const { id } = ctx.query
 
-  const data = {}
-
-  for (let car of fakeData) {
-
-    const urlFriendlyName = nameToUrlFriendly(car.name)
-
-    if (urlFriendlyName === name) {
-      Object.assign(data, car)
-    }
-
-  }
-
-  middlewarePartDua(token)
+  const response = await getSingleCar(id!)
 
   return {
     props: {
       token: token ?? null,
-      data
+      data: response.data
     }
   }
 
@@ -48,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 type Props = {
   token: string | null,
-  data: ProductItemInterface
+  data: CarItemInterface
 }
 
 const CarDetail: NextPage<Props> = ({ token, data }) => {
@@ -77,9 +65,9 @@ const CarDetail: NextPage<Props> = ({ token, data }) => {
 
                   <div className='flex justify-between items-center'>
 
-                    <h1 className='text-xl line-clamp-1 font-extrabold'>{data.name}</h1>
+                    <h1 className='text-xl line-clamp-1 font-extrabold'>{data.brand_car}</h1>
                     <div>
-                      <h3 className='text-right text-xl font-bold'>{data.modelYear}</h3>
+                      <h3 className='text-right text-xl font-bold'>{data.car_model_year}</h3>
                       <p className='text-xs text-black/60 font-medium'>Model Year</p>
                     </div>
 
@@ -93,12 +81,12 @@ const CarDetail: NextPage<Props> = ({ token, data }) => {
                     </div>
 
                     <div className='col-span-4 flex-col flex justify-center p-2'>
-                      <h3 className='font-bold'>4 Orang</h3>
+                      <h3 className='font-bold'>{data.capacity} Orang</h3>
                       <p className='text-xs text-black/60 font-medium'>Kapasitas</p>
                     </div>
 
                     <div className='col-span-4 flex-col flex justify-center p-2'>
-                      <h3 className='font-bold line-clamp-1'>H4R1 S3N1N</h3>
+                      <h3 className='font-bold line-clamp-1'>{data.no_plate}</h3>
                       <p className='text-xs text-black/60 font-medium'>Plat Nomor</p>
                     </div>
 
@@ -107,10 +95,10 @@ const CarDetail: NextPage<Props> = ({ token, data }) => {
                 </div>
 
                 <div className='p-4'>
-                  <h3 className='font-medium'>{data.owner}</h3>
+                  <h3 className='font-medium'>{toTitleCase(data.car_owner!)}</h3>
                   <div className='flex items-center space-x-1'>
                     <PinMapIcon className='w-3 fill-green-600 aspect-square' />
-                    <p className='text-sm font-light'>Jakarta</p>
+                    <p className='text-sm font-light'>{data.address}</p>
                   </div>
                 </div>
 
@@ -123,12 +111,12 @@ const CarDetail: NextPage<Props> = ({ token, data }) => {
 
                     <div className='flex items-center space-x-2'>
                       <TelIcon className='w-3 aspect-square' />
-                      <p>+62 812 3456 789</p>
+                      <p>+{data.mobile_phone}</p>
                     </div>
 
                     <div className='flex items-center space-x-2'>
                       <MailIcon className='w-3 aspect-square' />
-                      <p>adics@gmail.com</p>
+                      <p>{data.email}</p>
                     </div>
 
                   </div>

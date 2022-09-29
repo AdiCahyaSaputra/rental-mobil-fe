@@ -6,7 +6,7 @@ type Props = {
 
 const SubmitButton: React.FC<Props> = ({ isSubmitting, errors, name }) => {
   return (
-    <div className='mt-12'>
+    <div className='mt-12 text-white'>
 
       {isSubmitting ? (
         <button disabled className='font-bold py-2 px-4 bg-green-800 hover:shadow-md hover:shadow-green-800/80 w-full'>

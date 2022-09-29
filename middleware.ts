@@ -21,6 +21,7 @@ export const middleware = async (req: NextRequest) => {
 
   // When token is undefined
   if (guest) return NextResponse.next()
+  if (req.nextUrl.pathname.startsWith('/dashboard')) return NextResponse.redirect(new URL('/login', req.url))
 
 }
 
@@ -30,7 +31,7 @@ export const middleware = async (req: NextRequest) => {
 
 export const config = {
   matcher: [
-    '/', '/login', '/registrasi', '/test', '/beranda'
+    '/', '/login', '/registrasi', '/test', '/beranda', '/dashboard/:path'
   ]
 }
 

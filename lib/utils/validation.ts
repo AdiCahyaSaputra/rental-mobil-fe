@@ -4,6 +4,7 @@ import validator from 'validator'
 // Interface 
 import RegisterDataInterface from 'lib/interface/RegisterDataInterface'
 import LoginDataInterface from 'lib/interface/LoginDataInterface'
+import CarItemInterface from 'lib/interface/CarItemInterface'
 
 type ErrorsMesaage = { [field: string]: string }
 
@@ -41,7 +42,11 @@ export const validateLoginForm = (values: LoginDataInterface) => {
   const { email, password } = values
 
   if (!validator.isEmail(email)) errors.email = "Email harus mengandung @ dan domain yang sesuai"
-  if(!password) errors.password = "Password tidak boleh kosong"
+  if (!password) errors.password = "Password tidak boleh kosong"
 
   return errors
+}
+
+export const validateCreateCarForm = (values: CarItemInterface) => {
+  const errors: ErrorsMesaage = {}
 }

@@ -1,43 +1,50 @@
 // Lib
 import type { GetServerSideProps, NextPage } from "next"
 import Head from "next/head"
-import { fakeData, nameToUrlFriendly } from "lib/utils/data"
-import { middlewarePartDua } from "lib/utils/auth"
+import { useRouter } from "next/router"
+import { getCars } from "lib/utils/api"
+import { nameToUrlFriendly } from "lib/utils/stringHelper"
 
 // Components
 import Search from "components/reusable/Search"
 import Container from "components/reusable/Container"
 import ProductCard from "components/reusable/ProductCard"
 import PagesWrapper from "components/reusable/PagesWrapper"
-import { useRouter } from "next/router"
+
+// Interface
+import CarItemInterface from "lib/interface/CarItemInterface"
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { token } = ctx.req.cookies
 
-  middlewarePartDua(token)
+  const response = await getCars()
 
   return {
     props: {
-      token: token ?? null
+      token: token ?? null,
+      data: response.data
     }
   }
 
 }
 
-
 type Props = {
-  token: string | null
+  token: string | null,
+  data: CarItemInterface[]
 }
 
-const BerandaHome: NextPage<Props> = ({ token }) => {
+const BerandaHome: NextPage<Props> = ({ token, data }) => {
 
   const router = useRouter()
 
-  const clickHandler = (name: string) => {
+  const clickHandler = (brandCar: string, id: number) => {
 
-    const urlFriendly = nameToUrlFriendly(name)
-    return router.push('/car/' + urlFriendly)
+    const urlFriendly = nameToUrlFriendly(brandCar)
+    return router.push({
+      pathname: '/car/' + urlFriendly,
+      query: { id }
+    })
 
   }
 
@@ -58,14 +65,11 @@ const BerandaHome: NextPage<Props> = ({ token }) => {
 
             <div className="grid grid-cols-12 gap-4">
 
-              {fakeData.map((data, index: number) => (
+              {data.map((car) => (
                 <ProductCard
-                  name={data.name}
-                  modelYear={data.modelYear}
-                  color={data.color}
-                  owner={data.owner}
-                  key={index}
-                  click={() => clickHandler(data.name)}
+                  data={car}
+                  key={car.id}
+                  click={() => clickHandler(car.brand_car, car.id)}
                 />
               ))}
 

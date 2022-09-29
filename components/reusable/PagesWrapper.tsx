@@ -62,6 +62,7 @@ const PagesWrapper: React.FC<Props> = ({ children, token }) => {
       link: '/user/logout',
       name: 'Logout',
       textColor: 'text-red-600/80 hover:text-red-600',
+      active: 'text-red-600 hover:text-red-600/80',
       icon: <OutIcon className="w-4 aspect-square stroke-2 fill-red-500" />,
       customHandler: logoutHandler
     }
