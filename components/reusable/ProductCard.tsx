@@ -8,7 +8,6 @@ import { MouseEventHandler } from 'react'
 // Icons
 import SmallRarrIcon from '../../asset/svg/smallrarr.svg'
 import ServerStackIcon from '../../asset/svg/server.svg'
-import UserIcon from '../../asset/svg/user.svg'
 
 type Props = {
   data: CarItemInterface,
@@ -39,21 +38,16 @@ const ProductCard: React.FC<Props> = ({ data, click }) => {
           {data.brand_car}
         </h1>
 
-        <p className='text-sm mt-3 text-black/80 font-bold'>Kapasitas</p>
 
-        <div className='flex items-center space-x-2 mt-1.5'>
-
-          <UserIcon className='w-4 aspect-square' />
-          <p className='text-sm text-black/60 font-bold'>{data.capacity} Orang</p>
-
-        </div>
+        <p className='text-sm text-black/80 font-medium mt-2'>Kapasitas</p>
+        <p className='text-xs mt-1 text-black font-light'>{data.capacity} Orang</p>
 
       </div>
 
       <div className="p-3 mt-6 bg-gradient-to-r from-black via-black to-black">
 
         <div className='flex items-center justify-between'>
-          <h3 className="tracking-wide line-clamp-1 text-white text-sm font-bold">{toTitleCase(data.name)}</h3>
+          <h3 className="tracking-wide line-clamp-1 text-white text-sm font-bold">{toTitleCase(data.name!)}</h3>
           <SmallRarrIcon className="w-6 rounded-sm group-hover:bg-green-600/70 group-hover:shadow-md group-hover:shadow-green-600/30 group-hover:translate-x-1 bg-white/30 p-1 aspect-square fill-white" />
         </div>
 

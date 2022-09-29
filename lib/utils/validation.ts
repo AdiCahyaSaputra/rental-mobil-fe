@@ -5,6 +5,7 @@ import validator from 'validator'
 import RegisterDataInterface from 'lib/interface/RegisterDataInterface'
 import LoginDataInterface from 'lib/interface/LoginDataInterface'
 import CarItemInterface from 'lib/interface/CarItemInterface'
+import { error } from 'console'
 
 type ErrorsMesaage = { [field: string]: string }
 
@@ -49,4 +50,19 @@ export const validateLoginForm = (values: LoginDataInterface) => {
 
 export const validateCreateCarForm = (values: CarItemInterface) => {
   const errors: ErrorsMesaage = {}
+
+  if (!values.brand_car) errors.brand_car = "brand_car Tidak Boleh Kosong!"
+
+  if (!values.car_model_year) errors.car_model_year = "Model Year Tidak Boleh Kosong!"
+  if (typeof values.car_model_year !== 'number') errors.car_model_year = "Model Year harus angka!"
+
+  if (!validator.isAlpha(values.color!)) errors.car_model_year = "Warna hanya boleh mengandung a-z atau A-Z"
+
+  if (values.capacity !< 2) errors.capacity = "Kapasitas minimal 2"
+  if (values.capacity !> 10) errors.capacity = "Kapasitas maksimal 10"
+
+  if (!min(values.no_plate, 5)) errors.no_plate = "Plat Nomor Minimal 5"
+  if (!max(values.no_plate, 12)) errors.no_plate = "Plat Nomor Maksimal 12"
+
+  return errors
 }

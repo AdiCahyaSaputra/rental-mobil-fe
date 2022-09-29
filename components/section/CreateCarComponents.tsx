@@ -1,13 +1,21 @@
-import SubmitButton from "components/reusable/SubmitButton"
+// Lib
 import { Field, Formik } from "formik"
 import { validateCreateCarForm } from "lib/utils/validation"
 
+// Components
+import SubmitButton from "components/reusable/SubmitButton"
+
+// Interface
+import CarItemInterface from "lib/interface/CarItemInterface"
+import { createCar } from "lib/utils/api"
+
 const initFormValue = {
   brand_car: '',
-  car_model_year: 0,
+  car_model_year: '',
   color: '',
   no_plate: '',
-  capacity: 0
+  capacity: '',
+  status: 'available'
 }
 
 const inputElements = [
@@ -18,11 +26,19 @@ const inputElements = [
   { type: 'number', placeholder: 'Kapasitas', name: 'capacity' },
 ]
 
-const submitHandler = () => {
-  console.log('hello')
+
+type Props = {
+  token: string,
+  setResponse: Function
 }
 
-const CreateCarComponents: React.FC = () => {
+const CreateCarComponents: React.FC<Props> = ({ token, setResponse }) => {
+  
+  const submitHandler = async (values: CarItemInterface) => {
+    const response = await createCar(token, values)
+    setResponse(response)
+  }
+
   return (
     <Formik onSubmit={submitHandler} initialValues={initFormValue} validate={validateCreateCarForm}>
 
@@ -33,24 +49,25 @@ const CreateCarComponents: React.FC = () => {
             handleSubmit(e)
           }}>
 
-            {inputElements.map((input, index: number) => (
-              <>
+            <div className="space-y-2">
+              {inputElements.map((input, index: number) => (
                 <div key={index}>
                   <Field
                     type={input.type}
                     name={input.name}
                     autoComplete="off"
-                    value={input.type === 'number' ? '' : values[input.name]}
+                    value={values[input.name]}
                     placeholder={input.placeholder}
                     className="border-b-2 border-black/20 w-full outline-none bg-white focus:border-b-2 focus:border-black p-1.5"
                     required
                   />
+                  {touched && (
+                    <p className="text-sm mt-1 text-red-600 font-light">{errors[input.name]}</p>
+                  )}
                 </div>
-                {touched && (
-                  <p className="text-sm mt-1 text-red-600 font-light">{errors[input.name]}</p>
-                )}
-              </>
-            ))}
+              ))}
+
+            </div>
 
             <SubmitButton name="Sewakan Mobil" isSubmitting={isSubmitting} errors={errors} />
 

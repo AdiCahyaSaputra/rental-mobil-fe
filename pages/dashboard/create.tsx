@@ -2,11 +2,13 @@
 import type { GetServerSideProps, NextPage } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { useState } from "react"
 
 // Components
 import Container from "components/reusable/Container"
 import PagesWrapper from "components/reusable/PagesWrapper"
 import CreateCarComponents from "components/section/CreateCarComponents"
+import ErrNotify from "components/reusable/ErrNofify"
 
 // Icons
 import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
@@ -31,6 +33,10 @@ type Props = {
 const Create: NextPage<Props> = ({ token }) => {
 
   const router = useRouter()
+  const [response, setResponse] = useState({
+    status: 0,
+    message: ''
+  })
 
   return (
     <>
@@ -39,6 +45,8 @@ const Create: NextPage<Props> = ({ token }) => {
       </Head>
 
       <PagesWrapper token={token}>
+         
+        <ErrNotify response={response}/>
 
         <div className="py-14">
           <Container>
@@ -71,7 +79,7 @@ const Create: NextPage<Props> = ({ token }) => {
 
                 <div className="mt-4">
 
-                  <CreateCarComponents />
+                  <CreateCarComponents setResponse={setResponse} token={token!} />
 
                 </div>
 

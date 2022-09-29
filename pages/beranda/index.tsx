@@ -69,7 +69,7 @@ const BerandaHome: NextPage<Props> = ({ token, data }) => {
                 <ProductCard
                   data={car}
                   key={car.id}
-                  click={() => clickHandler(car.brand_car, car.id)}
+                  click={() => clickHandler(car.brand_car, car.id!)}
                 />
               ))}
 

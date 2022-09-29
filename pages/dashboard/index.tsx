@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { token } = ctx.req.cookies
 
   const response = await getUserCars(token!)
-  console.log(response)
 
   return {
     props: {

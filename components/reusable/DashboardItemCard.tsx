@@ -41,7 +41,7 @@ const DashboardItemCard: React.FC<Props> = ({ data, token }) => {
   }
 
   const destroyHandler = async () => {
-    const response = await destroyCar(data.id, token!)
+    const response = await destroyCar(data.id!, token!)
     setResponse(response)
     setTimeout(() => router.reload(), 1000)
   }
