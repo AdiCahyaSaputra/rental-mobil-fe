@@ -4,15 +4,18 @@ export default interface CarItemInterface {
   // Tampilan Utama
   brand_car: string,
   status: string,
-  name?: string,
+
   // Jir bisa beda cok
+  name?: string,
   car_owner?: string,
-  capacity: number | string, // untuk form create
+  owner_name?: string,
+
+  capacity?: number | string, // untuk form create
 
   // Car Detail
   color?: string,
   car_model_year?: number | string, // untuk form create
-  no_plate: string,
+  no_plate?: string,
 
   // Owner Info in car Detail
   mobile_phone?: string,

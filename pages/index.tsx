@@ -1,6 +1,5 @@
 // lib
 import type { GetServerSideProps, NextPage } from 'next'
-import NavItemInterface from 'lib/interface/NavItemInterface'
 import Head from 'next/head'
 import { getCars } from 'lib/utils/api'
 
@@ -11,7 +10,8 @@ import ContentSection from 'components/section/ContentSection'
 import FooterSection from 'components/section/FooterSection'
 
 // Interface
-import { CarItemInterface } from 'lib/interface/CarItemInterface'
+import CarItemInterface from 'lib/interface/CarItemInterface'
+import NavItemInterface from 'lib/interface/NavItemInterface'
 
 // Icons
 import UserIcon from '../asset/svg/user.svg'

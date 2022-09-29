@@ -43,7 +43,7 @@ export const getSingleCar = async (id: any) => {
 
 export const getUserCars = async (token: string) => {
 
-  const req = await fetch(`${BASE_API_URL}car/user`, {
+  const req = await fetch(`${BASE_API_URL}car/owner`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',

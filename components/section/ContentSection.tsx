@@ -1,5 +1,5 @@
 // Lib
-import { nameToUrlFriendly } from "lib/utils/data"
+import { nameToUrlFriendly } from "lib/utils/stringHelper"
 import { useRouter } from "next/router"
 
 // Components
@@ -7,13 +7,8 @@ import Container from "components/reusable/Container"
 import ProductCard from "components/reusable/ProductCard"
 import Search from "components/reusable/Search"
 
-interface CarItemInterface {
-  brand_car: string,
-  car_model_year: number,
-  color: string,
-  id: number,
-  name: string
-}
+// Interface
+import CarItemInterface from "lib/interface/CarItemInterface"
 
 type Props = {
   data: CarItemInterface[]
@@ -48,10 +43,7 @@ const ContentSection: React.FC<Props> = ({ data }) => {
           {data.map((car) => (
             <ProductCard
               key={car.id}
-              brandCar={car.brand_car}
-              modelYear={car.car_model_year}
-              color={car.color}
-              owner={car.name}
+              data={car}
               click={() => clickHandler(car.brand_car)}
             />
           ))}
