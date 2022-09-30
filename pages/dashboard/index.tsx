@@ -14,6 +14,7 @@ import CarItemInterface from 'lib/interface/CarItemInterface'
 
 // Icons
 import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
+import EmptyDataState from 'components/reusable/EmptyDataState'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
@@ -61,11 +62,17 @@ const DashboardHome: NextPage<Props> = ({ token, data }) => {
                 <p className='text-sm text-black/80 my-1'>Semua data mobil yang ingin disewakan. Anda bisa mengelola data nya di sini</p>
                 <a onClick={() => router.push('/dashboard/create')} className='text-sm font-medium text-blue-600 hover:underline'>Tambah Data</a>
 
-                <div className='mt-10 grid grid-cols-12 gap-4'>
-                  {data.map((car) => (
-                    <DashboardItemCard token={token} key={car.id} data={car} />
-                  ))}
-                </div>
+                {data.length ? (
+                  <div className='mt-10 grid grid-cols-12 gap-4'>
+                    {data.map((car) => (
+                      <DashboardItemCard token={token} key={car.id} data={car} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className='mt-10'>
+                    <EmptyDataState desc='Anda belum mendaftarkan Mobil yang ingin anda pinjamkan' />
+                  </div>
+                )}
               </div>
 
             </div>
