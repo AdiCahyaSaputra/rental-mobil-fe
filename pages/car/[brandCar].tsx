@@ -6,8 +6,8 @@ import { getSingleCar } from 'lib/utils/api'
 import { toTitleCase } from 'lib/utils/stringHelper'
 
 // Components
-import PagesWrapper from 'components/reusable/PagesWrapper'
-import Container from 'components/reusable/Container'
+import PagesWrapper from 'components/reusable/global/PagesWrapper'
+import Container from 'components/reusable/global/Container'
 
 // Interface
 import CarItemInterface from 'lib/interface/CarItemInterface'

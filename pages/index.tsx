@@ -4,10 +4,10 @@ import Head from 'next/head'
 import { getCars } from 'lib/utils/api'
 
 // components
-import Navbar from 'components/reusable/Navbar'
-import HeroSection from 'components/section/HeroSection'
-import ContentSection from 'components/section/ContentSection'
-import FooterSection from 'components/section/FooterSection'
+import Navbar from 'components/reusable/global/Navbar'
+import HeroSection from 'components/section/home/HeroSection'
+import ContentSection from 'components/section/home/ContentSection'
+import FooterSection from 'components/section/global/FooterSection'
 
 // Interface
 import CarItemInterface from 'lib/interface/CarItemInterface'

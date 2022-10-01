@@ -1,5 +1,5 @@
 // Icons
-import SearchIcon from '../../asset/svg/search.svg'
+import SearchIcon from '../../../asset/svg/search.svg'
 
 const Search: React.FC = () => {
   return (

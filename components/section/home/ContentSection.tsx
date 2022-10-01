@@ -3,9 +3,9 @@ import { nameToUrlFriendly } from "lib/utils/stringHelper"
 import { useRouter } from "next/router"
 
 // Components
-import Container from "components/reusable/Container"
-import ProductCard from "components/reusable/ProductCard"
-import Search from "components/reusable/Search"
+import Container from "components/reusable/global/Container"
+import ProductCard from "components/reusable/beranda/ProductCard"
+import Search from "components/reusable/global/Search"
 
 // Interface
 import CarItemInterface from "lib/interface/CarItemInterface"

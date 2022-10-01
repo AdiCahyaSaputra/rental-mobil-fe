@@ -5,16 +5,16 @@ import { useRouter } from 'next/router'
 import { getUserCars } from 'lib/utils/api'
 
 // Components
-import PagesWrapper from 'components/reusable/PagesWrapper'
-import Container from 'components/reusable/Container'
-import DashboardItemCard from 'components/reusable/DashboardItemCard'
+import PagesWrapper from 'components/reusable/global/PagesWrapper'
+import Container from 'components/reusable/global/Container'
+import DashboardItemCard from 'components/reusable/dashboard/DashboardItemCard'
+import EmptyDataState from 'components/reusable/global/EmptyDataState'
 
 // Interface
 import CarItemInterface from 'lib/interface/CarItemInterface'
 
 // Icons
 import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
-import EmptyDataState from 'components/reusable/EmptyDataState'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 

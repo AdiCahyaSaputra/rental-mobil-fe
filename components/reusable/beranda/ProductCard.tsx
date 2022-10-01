@@ -6,8 +6,8 @@ import CarItemInterface from 'lib/interface/CarItemInterface'
 import { MouseEventHandler } from 'react'
 
 // Icons
-import SmallRarrIcon from '../../asset/svg/smallrarr.svg'
-import ServerStackIcon from '../../asset/svg/server.svg'
+import SmallRarrIcon from '../../../asset/svg/smallrarr.svg'
+import ServerStackIcon from '../../../asset/svg/server.svg'
 
 type Props = {
   data: CarItemInterface,

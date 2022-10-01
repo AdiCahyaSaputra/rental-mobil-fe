@@ -1,14 +1,14 @@
 // Lib
 import { useRouter } from "next/router"
 
-type Items = {
+type Item = {
   label: string,
   link: string
 }
 
 type Props = {
   title: string,
-  items: Items[]
+  items: Item[]
 }
 
 const isAbsolutePath = (link: string): boolean => link.includes('https://')

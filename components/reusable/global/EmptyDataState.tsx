@@ -1,4 +1,4 @@
-import Logo from "./Logo"
+import Logo from "components/reusable/global/Logo"
 
 type Props = {
   width?: string,

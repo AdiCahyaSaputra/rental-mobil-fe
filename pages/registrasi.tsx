@@ -5,9 +5,9 @@ import { useState } from "react"
 import Head from "next/head"
 
 // Components
-import Logo from "components/reusable/Logo"
-import RegisterComponents from "components/section/RegisterComponents"
-import ErrNotify from "components/reusable/ErrNofify"
+import Logo from "components/reusable/global/Logo"
+import RegisterSection from "components/section/auth/RegisterSection"
+import ErrNotify from "components/reusable/global/ErrNofify"
 
 type StateResponse = {
   message: any,
@@ -40,7 +40,7 @@ const Registrasi: NextPage = () => {
           <h1 className='text-xl font-bold'>Langkah Awal Untuk Mulai</h1>
           <p className='text-sm font-light text-white/80'>Bergabunglah Dengan Komunitas Kami</p>
 
-          <RegisterComponents setResponse={setResponse} />
+          <RegisterSection setResponse={setResponse} />
 
         </div>
         <a onClick={() => router.push('/login')} className='text-center cursor-pointer text-sm text-blue-500 group'>Sudah memiliki akun? <br /><span className='group-hover:underline'>login disini</span></a>

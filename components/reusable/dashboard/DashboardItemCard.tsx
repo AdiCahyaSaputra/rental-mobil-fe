@@ -5,16 +5,16 @@ import { destroyCar } from 'lib/utils/api'
 import { nameToUrlFriendly, toTitleCase } from 'lib/utils/stringHelper'
 
 // Components
-import DialogConfirm from 'components/reusable/DialogConfirm'
-import ErrNotify from 'components/reusable/ErrNofify'
+import DialogConfirm from 'components/reusable/dashboard/DialogConfirm'
+import ErrNotify from 'components/reusable/global/ErrNofify'
 
 // Interface
 import CarItemInterface from 'lib/interface/CarItemInterface'
 
 // Icons
-import EditIcon from '../../asset/svg/edit.svg'
-import TrashIcon from '../../asset/svg/trash.svg'
-import ServerStackIcon from '../../asset/svg/server.svg'
+import EditIcon from '../../../asset/svg/edit.svg'
+import TrashIcon from '../../../asset/svg/trash.svg'
+import ServerStackIcon from '../../../asset/svg/server.svg'
 
 type Props = {
   data: CarItemInterface,

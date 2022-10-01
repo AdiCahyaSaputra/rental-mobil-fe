@@ -1,5 +1,5 @@
 // Components
-import Notify from "components/reusable/Notify"
+import Notify from "components/reusable/global/Notify"
 
 type Props = {
   response: {

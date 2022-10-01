@@ -2,7 +2,7 @@
 import { useRouter } from "next/router"
 
 // Components
-import Logo from "components/reusable/Logo"
+import Logo from "components/reusable/global/Logo"
 
 const HeroSection: React.FC = () => {
   const router = useRouter()

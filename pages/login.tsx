@@ -5,9 +5,9 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 // Components
-import Logo from 'components/reusable/Logo'
-import LoginComponents from 'components/section/LoginComponents'
-import ErrNotify from 'components/reusable/ErrNofify'
+import Logo from 'components/reusable/global/Logo'
+import LoginSection from 'components/section/auth/LoginSection'
+import ErrNotify from 'components/reusable/global/ErrNofify'
 
 type StateResponse = {
   message: any,
@@ -40,7 +40,7 @@ const Login: NextPage = () => {
           <h1 className='text-xl font-bold'>Mulai Disini</h1>
           <p className='text-sm font-light text-white/80'>Login untuk menggunakan semua fitur</p>
 
-          <LoginComponents setResponse={setResponse} />
+          <LoginSection setResponse={setResponse} />
 
         </div>
 

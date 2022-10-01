@@ -1,22 +1,13 @@
 // Lib
 import { Field, Formik } from "formik"
 import { validateCreateCarForm } from "lib/utils/validation"
+import { editCar } from "lib/utils/api"
 
 // Components
-import SubmitButton from "components/reusable/SubmitButton"
+import SubmitButton from "components/reusable/global/SubmitButton"
 
 // Interface
 import CarItemInterface from "lib/interface/CarItemInterface"
-import { createCar } from "lib/utils/api"
-
-const initFormValue = {
-  brand_car: '',
-  car_model_year: '',
-  color: '',
-  no_plate: '',
-  capacity: '',
-  status: 'available'
-}
 
 const inputElements = [
   { type: 'text', placeholder: 'Nama Brand', name: 'brand_car' },
@@ -29,13 +20,24 @@ const inputElements = [
 
 type Props = {
   token: string,
-  setResponse: Function
+  setResponse: Function,
+  data: CarItemInterface,
+  car_id: number
 }
 
-const CreateCarComponents: React.FC<Props> = ({ token, setResponse }) => {
-  
+const EditCarSection: React.FC<Props> = ({ token, setResponse, data, car_id }) => {
+
+  const initFormValue = {
+    brand_car: data.brand_car,
+    car_model_year: data.car_model_year,
+    color: data.color,
+    no_plate: data.no_plate,
+    capacity: data.capacity,
+    status: 'available'
+  }
+
   const submitHandler = async (values: CarItemInterface) => {
-    const response = await createCar(token, values)
+    const response = await editCar(token, values, car_id)
     setResponse(response)
   }
 
@@ -69,7 +71,7 @@ const CreateCarComponents: React.FC<Props> = ({ token, setResponse }) => {
 
             </div>
 
-            <SubmitButton name="Sewakan Mobil" isSubmitting={isSubmitting} errors={errors} />
+            <SubmitButton name="Edit Data Mobil" isSubmitting={isSubmitting} errors={errors} />
 
           </form>
         </>
@@ -79,4 +81,4 @@ const CreateCarComponents: React.FC<Props> = ({ token, setResponse }) => {
   )
 }
 
-export default CreateCarComponents
+export default EditCarSection

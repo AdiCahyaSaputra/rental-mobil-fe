@@ -1,5 +1,5 @@
 // Icons
-import GithubIcon from '../../asset/svg/github.svg'
+import GithubIcon from '../../../asset/svg/github.svg'
 
 type Props = {
   user: string,

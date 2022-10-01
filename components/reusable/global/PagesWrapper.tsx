@@ -4,18 +4,18 @@ import { useRouter } from "next/router"
 import useAuth from "lib/hooks/useAuth"
 
 // Components
-import Navbar from "components/reusable/Navbar"
-import FooterSection from 'components/section/FooterSection'
+import Navbar from "components/reusable/global/Navbar"
+import FooterSection from 'components/section/global/FooterSection'
 
 // Interface
 import NavItemInterface from "lib/interface/NavItemInterface"
 
 // Icons
-import UserIcon from '../../asset/svg/user.svg'
-import RegisterIcon from '../../asset/svg/register.svg'
-import DashboardIcon from '../../asset/svg/dashboard.svg'
-import SettingIcon from '../../asset/svg/setting.svg'
-import OutIcon from '../../asset/svg/out.svg'
+import UserIcon from '../../../asset/svg/user.svg'
+import RegisterIcon from '../../../asset/svg/register.svg'
+import DashboardIcon from '../../../asset/svg/dashboard.svg'
+import SettingIcon from '../../../asset/svg/setting.svg'
+import OutIcon from '../../../asset/svg/out.svg'
 
 const GuestNavItems: NavItemInterface[] = [
   {

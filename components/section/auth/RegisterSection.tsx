@@ -5,14 +5,14 @@ import { validateRegisterForm } from "lib/utils/validation"
 import useAuth from "lib/hooks/useAuth"
 
 // Components
-import RoleCard from "components/reusable/RoleCard"
+import RoleCard from "components/reusable/auth/RoleCard"
+import SubmitButton from "components/reusable/global/SubmitButton"
 
 // Interface 
 import RegisterDataInterface from 'lib/interface/RegisterDataInterface'
 
 // Icons
-import EditIcon from '../../asset/svg/edit.svg'
-import SubmitButton from "components/reusable/SubmitButton"
+import EditIcon from '../../../asset/svg/edit.svg'
 
 type Props = {
   setResponse: Function,
@@ -42,7 +42,7 @@ const initFormValue = {
   role_id: 1
 }
 
-const RegisterComponents: React.FC<Props> = ({ setResponse }) => {
+const RegisterSection: React.FC<Props> = ({ setResponse }) => {
 
   const [openModalRole, setOpenModalRole] = useState(false)
   const [role, setRole] = useState({ id: 1, name: 'CUSTOMER' })
@@ -125,4 +125,4 @@ const RegisterComponents: React.FC<Props> = ({ setResponse }) => {
   )
 }
 
-export default RegisterComponents
+export default RegisterSection

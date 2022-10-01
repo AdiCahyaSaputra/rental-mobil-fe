@@ -6,10 +6,10 @@ import { getCars } from "lib/utils/api"
 import { nameToUrlFriendly } from "lib/utils/stringHelper"
 
 // Components
-import Search from "components/reusable/Search"
-import Container from "components/reusable/Container"
-import ProductCard from "components/reusable/ProductCard"
-import PagesWrapper from "components/reusable/PagesWrapper"
+import Search from "components/reusable/global/Search"
+import Container from "components/reusable/global/Container"
+import ProductCard from "components/reusable/beranda/ProductCard"
+import PagesWrapper from "components/reusable/global/PagesWrapper"
 
 // Interface
 import CarItemInterface from "lib/interface/CarItemInterface"

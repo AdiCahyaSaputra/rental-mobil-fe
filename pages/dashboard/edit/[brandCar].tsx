@@ -6,11 +6,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 // Components
-import Container from "components/reusable/Container";
-import ErrNotify from "components/reusable/ErrNofify";
-import Logo from "components/reusable/Logo";
-import PagesWrapper from "components/reusable/PagesWrapper";
-import EditCarComponents from "components/section/EditCarComponents";
+import Container from "components/reusable/global/Container";
+import ErrNotify from "components/reusable/global/ErrNofify";
+import Logo from "components/reusable/global/Logo";
+import PagesWrapper from "components/reusable/global/PagesWrapper";
+import EditCarSection from "components/section/dashboard/EditCarSection";
 
 // Interface
 import CarItemInterface from "lib/interface/CarItemInterface";
@@ -87,7 +87,7 @@ const DashboardEdit: NextPage<Props> = ({ token, data }) => {
 
                 <div className="mt-4">
 
-                  <EditCarComponents car_id={router.query.id} data={data} setResponse={setResponse} token={token!} />
+                  <EditCarSection car_id={router.query.id!} data={data} setResponse={setResponse} token={token!} />
 
                 </div>
 

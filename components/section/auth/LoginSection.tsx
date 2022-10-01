@@ -4,7 +4,7 @@ import { validateLoginForm } from "lib/utils/validation"
 import useAuth from "lib/hooks/useAuth"
 
 // components
-import SubmitButton from "components/reusable/SubmitButton"
+import SubmitButton from "components/reusable/global/SubmitButton"
 
 // Interface 
 import LoginDataInterface from "lib/interface/LoginDataInterface"
@@ -24,7 +24,7 @@ const initFormValue = {
   remember: false
 }
 
-const LoginComponents: React.FC<Props> = ({ setResponse }) => {
+const LoginSection: React.FC<Props> = ({ setResponse }) => {
 
   const { login } = useAuth()
 
@@ -84,4 +84,4 @@ const LoginComponents: React.FC<Props> = ({ setResponse }) => {
   )
 }
 
-export default LoginComponents
+export default LoginSection

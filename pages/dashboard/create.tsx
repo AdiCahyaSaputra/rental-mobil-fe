@@ -5,14 +5,14 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 
 // Components
-import Container from "components/reusable/Container"
-import PagesWrapper from "components/reusable/PagesWrapper"
-import CreateCarComponents from "components/section/CreateCarComponents"
-import ErrNotify from "components/reusable/ErrNofify"
+import Container from "components/reusable/global/Container"
+import PagesWrapper from "components/reusable/global/PagesWrapper"
+import CreateCarSection from "components/section/dashboard/CreateCarSection"
+import ErrNotify from "components/reusable/global/ErrNofify"
+import Logo from "components/reusable/global/Logo"
 
 // Icons
 import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
-import Logo from "components/reusable/Logo"
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
@@ -79,7 +79,7 @@ const DashboardCreate: NextPage<Props> = ({ token }) => {
 
                 <div className="mt-4">
 
-                  <CreateCarComponents setResponse={setResponse} token={token!} />
+                  <CreateCarSection setResponse={setResponse} token={token!} />
 
                 </div>
 
