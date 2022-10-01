@@ -49,7 +49,11 @@ const useAuth = () => {
     const res = await req.json()
 
     if (res.access_token) {
-      setAccessToken(res.access_token, router)
+      setAccessToken(
+        res.access_token,
+        res.data.role_id,
+        router
+      )
     }
 
     return {

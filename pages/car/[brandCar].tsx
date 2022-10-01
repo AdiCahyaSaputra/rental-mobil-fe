@@ -20,7 +20,7 @@ import MailIcon from '../../asset/svg/mail.svg'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { token } = ctx.req.cookies
+  const { token, role } = ctx.req.cookies
   const { id } = ctx.query
 
   const response = await getSingleCar(id!)
@@ -28,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       token: token ?? null,
+      role: role ?? null,
       data: response.data
     }
   }
@@ -36,10 +37,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 type Props = {
   token: string | null,
+  role: string | null,
   data: CarItemInterface
 }
 
-const CarDetail: NextPage<Props> = ({ token, data }) => {
+const CarDetail: NextPage<Props> = ({ token, role, data }) => {
 
   const router = useRouter()
 
@@ -122,7 +124,7 @@ const CarDetail: NextPage<Props> = ({ token, data }) => {
                   </div>
                 </div>
                 <div>
-                  <button className='font-bold py-2 px-4 text-center bg-green-600 hover:bg-green-700 text-white w-full'>Sewa Mobil</button>
+                  <button disabled={role === 'owner'} className='disabled:bg-green-900 font-bold py-2 px-4 text-center bg-green-600 hover:bg-green-700 text-white w-full'>Sewa Mobil</button>
                 </div>
               </div>
 

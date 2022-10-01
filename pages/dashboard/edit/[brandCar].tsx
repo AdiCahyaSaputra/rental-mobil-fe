@@ -20,8 +20,15 @@ import SmallLarrIcon from '../../../asset/svg/smalllarr.svg'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { token } = ctx.req.cookies
+  const { token, role } = ctx.req.cookies
   const { id } = ctx.query
+
+  if (role === 'customer') return {
+    redirect: {
+      destination: '/dashboard',
+      permanent: false
+    }
+  }
 
   const response = await getSingleCar(id)
 
@@ -87,7 +94,7 @@ const DashboardEdit: NextPage<Props> = ({ token, data }) => {
 
                 <div className="mt-4">
 
-                  <EditCarSection car_id={router.query.id!} data={data} setResponse={setResponse} token={token!} />
+                  <EditCarSection car_id={parseInt(router.query.id!)} data={data} setResponse={setResponse} token={token!} />
 
                 </div>
 

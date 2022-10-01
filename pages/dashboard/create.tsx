@@ -16,7 +16,14 @@ import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { token } = ctx.req.cookies
+  const { token, role } = ctx.req.cookies
+
+  if (role === 'customer') return {
+    redirect: {
+      destination: '/dashboard',
+      permanent: false
+    }
+  }
 
   return {
     props: {

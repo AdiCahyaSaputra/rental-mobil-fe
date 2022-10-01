@@ -1,7 +1,8 @@
 import { NextRouter } from "next/router"
 
-export const setAccessToken = async (token: string, router: NextRouter) => {
-  const requestBody = { access_token: token }
+export const setAccessToken = async (token: string, role_id: number, router: NextRouter) => {
+  const role = ['customer', 'owner']
+  const requestBody = { access_token: token, role: role[role_id - 1] }
 
   const req = await fetch('/api/cookie/set', {
     method: 'POST',
@@ -27,4 +28,3 @@ export const destroyAccessToken = async (router?: NextRouter | null) => {
   if (req.status !== 200) return console.log(req.statusText)
   if (router) return router.push('/login')
 }
-

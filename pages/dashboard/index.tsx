@@ -18,13 +18,14 @@ import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { token } = ctx.req.cookies
+  const { token, role } = ctx.req.cookies
 
   const response = await getUserCars(token!)
 
   return {
     props: {
       token: token ?? null,
+      role: role ?? null,
       data: response.data
     }
   }
@@ -33,12 +34,21 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 type Props = {
   token: string | null,
+  role: string | null,
   data: CarItemInterface[]
 }
 
-const DashboardHome: NextPage<Props> = ({ token, data }) => {
+const DashboardHome: NextPage<Props> = ({ token, role, data }) => {
 
   const router = useRouter()
+
+  const paragraphText = role === 'owner' ?
+    'Semua data mobil yang ingin disewakan. Anda bisa mengelola data nya di sini' :
+    'Semua data mobil yang anda sewa. Anda bisa melihat tanggal pengembalian / peminjaman disini'
+
+  const emptyStateText = role === 'owner' ?
+    'Anda belum mendaftarkan Mobil yang ingin anda pinjamkan' :
+    'Anda belum meminjam mobil atau owner abelum menyetujui permintaan peminjaman anda'
 
   return (
     <>
@@ -58,9 +68,9 @@ const DashboardHome: NextPage<Props> = ({ token, data }) => {
 
               <div className='bg-white col-span-12 md:col-span-10 p-4'>
 
-                <h1 className='text-xl font-bold text-black'>Data Mobil Sewa</h1>
-                <p className='text-sm text-black/80 my-1'>Semua data mobil yang ingin disewakan. Anda bisa mengelola data nya di sini</p>
-                <a onClick={() => router.push('/dashboard/create')} className='text-sm font-medium text-blue-600 hover:underline'>Tambah Data</a>
+                <h1 className='text-xl font-bold text-black'>Data Mobil</h1>
+                <p className='text-sm text-black/80 my-1'>{paragraphText}</p>
+                <a onClick={() => router.push('/dashboard/create')} className={`${role === 'customer' && 'hidden'} text-sm font-medium text-blue-600 hover:underline`}>Tambah Data</a>
 
                 {data.length ? (
                   <div className='mt-10 grid grid-cols-12 gap-4'>
@@ -69,8 +79,8 @@ const DashboardHome: NextPage<Props> = ({ token, data }) => {
                     ))}
                   </div>
                 ) : (
-                  <div className='mt-10'>
-                    <EmptyDataState desc='Anda belum mendaftarkan Mobil yang ingin anda pinjamkan' />
+                  <div className='mt-6'>
+                    <EmptyDataState desc={emptyStateText} />
                   </div>
                 )}
               </div>

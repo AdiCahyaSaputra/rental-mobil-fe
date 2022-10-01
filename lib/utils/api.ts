@@ -119,3 +119,23 @@ export const editCar = async (token: string, data: CarItemInterface, id: number)
     message: res.message
   }
 }
+
+export const getUserProfile = async (token: string) => {
+
+  const req = await fetch(`${BASE_API_URL}user/profile`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    method: 'GET',
+  })
+
+  const res = await req.json()
+
+  return {
+    status: req.status,
+    message: res.message,
+    data: res.data
+  }
+
+}
