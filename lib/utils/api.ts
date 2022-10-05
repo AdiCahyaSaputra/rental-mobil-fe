@@ -282,3 +282,36 @@ export const rentList = async (token: string) => {
     data: res.data
   }
 }
+
+/**
+* Rent Car Approval
+*
+* Menyetujui permintaan peminjaman
+* dari customer
+*
+* @param token string
+* @param customer_id number
+* @param status_id number
+*
+* @returns status number
+* @returns message string
+*
+*/
+export const approveRentCar = async (token: string, customer_id: number, status_id: number) => {
+  const req = await fetch(`${BASE_API_URL}rent/approval-status/customer/${customer_id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    method: 'POST',
+    body: JSON.stringify({ status_id })
+  })
+
+  const res = await req.json()
+
+  return {
+    status: req.status,
+    message: res.message
+  }
+}

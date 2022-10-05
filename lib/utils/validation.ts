@@ -54,7 +54,7 @@ export const validateCreateCarForm = (values: CarItemInterface) => {
   if (!values.car_model_year) errors.car_model_year = "Model Year Tidak Boleh Kosong!"
   if (typeof values.car_model_year !== 'number') errors.car_model_year = "Model Year harus angka!"
 
-  if (!validator.isAlpha(values.color!)) errors.car_model_year = "Warna hanya boleh mengandung a-z atau A-Z"
+  if (!validator.isAlpha(values.color!)) errors.color = "Warna hanya boleh mengandung a-z atau A-Z"
 
   if (values.capacity! < 2) errors.capacity = "Kapasitas minimal 2"
   if (values.capacity! > 10) errors.capacity = "Kapasitas maksimal 10"

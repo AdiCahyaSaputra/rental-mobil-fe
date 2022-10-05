@@ -8,11 +8,13 @@ import { rentList } from "lib/utils/api";
 import Container from "components/reusable/global/Container";
 import PagesWrapper from "components/reusable/global/PagesWrapper";
 import EmptyDataState from "components/reusable/global/EmptyDataState";
+import RentCard from "components/reusable/rent/RentCard";
+
+// Interface
+import RentDataInterface from "lib/interface/RentDataInterface";
 
 // Icons
 import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
-import RentDataInterface from "lib/interface/RentDataInterface";
-import RentCard from "components/reusable/rent/RentCard";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
@@ -34,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       token: token ?? null,
       role: role ?? null,
-      data: response.data
+      data: response.data ?? []
     }
   }
 
@@ -43,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 type Props = {
   token: string | null,
   role: string | null,
-  data: RentDataInterface[]
+  data: RentDataInterface[] | []
 }
 
 const Rent: NextPage<Props> = ({ token, data }) => {
@@ -77,7 +79,7 @@ const Rent: NextPage<Props> = ({ token, data }) => {
                 {data.length ? (
                   <div className='mt-10 grid grid-cols-12 gap-4'>
                     {data.map((car, index: number) => (
-                      <RentCard key={index} car={car} />
+                      <RentCard token={token!} key={index} car={car} />
                     ))}
                   </div>
                 ) : (

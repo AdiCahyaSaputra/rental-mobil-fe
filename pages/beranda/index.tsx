@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       token: token ?? null,
-      data: response.data.data,
+      data: response.data.data ?? [],
       role: role ?? null
     }
   }
@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 type Props = {
   token: string | null,
   role: string | null,
-  data: CarItemInterface[],
+  data: CarItemInterface[] | [],
 }
 
 const BerandaHome: NextPage<Props> = ({ token, role, data }) => {

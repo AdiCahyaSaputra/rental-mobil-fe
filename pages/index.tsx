@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      data: response.data.data
+      data: response.data.data ?? []
     }
   }
 
@@ -43,7 +43,7 @@ const navItems: NavItemInterface[] = [
 ]
 
 type Props = {
-  data: CarItemInterface[]
+  data: CarItemInterface[] | []
 }
 
 const Home: NextPage<Props> = ({ data }) => {
