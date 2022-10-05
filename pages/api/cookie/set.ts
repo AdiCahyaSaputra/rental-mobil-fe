@@ -2,7 +2,8 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
 import { setCookie } from "cookies-next"
 
 const handler: NextApiHandler = (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== 'POST') return res.status(401).end()
+  if (req.method !== 'POST') return res.status(405).end()
+
   setCookie('token', req.body.access_token, { req, res })
   setCookie('role', req.body.role, { req, res })
 

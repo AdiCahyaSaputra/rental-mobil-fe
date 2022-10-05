@@ -16,7 +16,7 @@ import CarItemInterface from "lib/interface/CarItemInterface"
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
-  const { token } = ctx.req.cookies
+  const { token, role } = ctx.req.cookies
 
   const response = await getCars()
 
@@ -24,6 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       token: token ?? null,
       data: response.data.data,
+      role: role ?? null
     }
   }
 
@@ -31,10 +32,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 type Props = {
   token: string | null,
+  role: string | null,
   data: CarItemInterface[],
 }
 
-const BerandaHome: NextPage<Props> = ({ token, data }) => {
+const BerandaHome: NextPage<Props> = ({ token, role, data }) => {
 
   const router = useRouter()
 
@@ -54,7 +56,7 @@ const BerandaHome: NextPage<Props> = ({ token, data }) => {
         <title>Beranda</title>
       </Head>
 
-      <PagesWrapper token={token}>
+      <PagesWrapper token={token} role={role!}>
 
         <div className="py-4 bg-white/60 backdrop-blur-md shadow-md shadow-white/60 sticky top-12 inset-x-0">
           <Search />

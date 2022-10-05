@@ -32,13 +32,16 @@ const GuestNavItems: NavItemInterface[] = [
 
 type Props = {
   children: React.ReactNode,
-  token: string | null
+  token: string | null,
+  role?: string
 }
 
-const PagesWrapper: React.FC<Props> = ({ children, token }) => {
+const PagesWrapper: React.FC<Props> = ({ children, token, role }) => {
 
   const router = useRouter()
   const { logout } = useAuth()
+
+  const isCustomer: boolean = role === 'customer'
 
   const logoutHandler = (link: string) => {
 
@@ -59,7 +62,7 @@ const PagesWrapper: React.FC<Props> = ({ children, token }) => {
       icon: <UserIcon className="w-4 aspect-square" />
     },
     {
-      link: '/rent/',
+      link: isCustomer ? '/rent/customer' : '/rent',
       name: 'Rent List',
       icon: <SettingIcon className="w-4 aspect-square" />
     },

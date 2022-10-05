@@ -20,6 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const response = await rentList(token!)
 
+  // Unauthenticated wkwk
   if (response.status === 401) {
     return {
       redirect: {
@@ -45,7 +46,7 @@ type Props = {
   data: RentDataInterface[]
 }
 
-const Rent: NextPage<Props> = ({ token, role, data }) => {
+const Rent: NextPage<Props> = ({ token, data }) => {
 
   const router = useRouter()
 

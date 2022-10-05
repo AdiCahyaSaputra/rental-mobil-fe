@@ -75,7 +75,7 @@ const CarDetail: NextPage<Props> = ({ token, role, data, car_id }) => {
       <ErrNotify response={response} />
       <RentModal token={token!} car_id={car_id} setResponse={setResponse} isOpen={openRentModal} close={setOpenRentModal} />
 
-      <PagesWrapper token={token}>
+      <PagesWrapper token={token} role={role!}>
         <div className='py-14'>
 
           <Container>
