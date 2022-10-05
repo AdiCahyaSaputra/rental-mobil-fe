@@ -56,6 +56,11 @@ const PagesWrapper: React.FC<Props> = ({ children, token }) => {
     {
       link: '/user/setting',
       name: 'Pengaturan Akun',
+      icon: <UserIcon className="w-4 aspect-square" />
+    },
+    {
+      link: '/rent/',
+      name: 'Rent List',
       icon: <SettingIcon className="w-4 aspect-square" />
     },
     {

@@ -2,17 +2,26 @@ import { NextRequest, NextResponse } from "next/server"
 
 export const middleware = async (req: NextRequest) => {
 
-  const guest = req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/registrasi')
+  // Guest URL
+  const guest = ['/login', '/registrasi']
 
-  if (req.nextUrl.pathname.startsWith('/test')) {
-    return NextResponse.next()
+  // Global URL
+  const global = ['/beranda', '/car', '/test', '/']
+
+  // Don't need middleware 
+  for (let url of global) {
+    if (req.nextUrl.pathname.startsWith(url)) {
+      return NextResponse.next()
+    }
   }
 
   // Middleware Guest
   if (req.cookies.get('token')) {
 
-    if (guest || req.nextUrl.pathname === '/') {
-      return NextResponse.redirect(new URL('/beranda', req.url))
+    for (let url of guest) {
+      if (req.nextUrl.pathname.startsWith(url)) {
+        return NextResponse.redirect(new URL('/beranda', req.url))
+      }
     }
 
     return NextResponse.next()
@@ -21,7 +30,9 @@ export const middleware = async (req: NextRequest) => {
 
   // When token is undefined
   if (guest) return NextResponse.next()
-  if (req.nextUrl.pathname.startsWith('/dashboard')) return NextResponse.redirect(new URL('/login', req.url))
+
+  // Need token
+  return NextResponse.redirect(new URL('/login', req.url))
 
 }
 
@@ -31,7 +42,7 @@ export const middleware = async (req: NextRequest) => {
 
 export const config = {
   matcher: [
-    '/', '/login', '/registrasi', '/test', '/beranda', '/dashboard/:path*'
+    '/:path*'
   ]
 }
 

@@ -5,7 +5,6 @@ import validator from 'validator'
 import RegisterDataInterface from 'lib/interface/RegisterDataInterface'
 import LoginDataInterface from 'lib/interface/LoginDataInterface'
 import CarItemInterface from 'lib/interface/CarItemInterface'
-import { error } from 'console'
 
 type ErrorsMesaage = { [field: string]: string }
 
@@ -19,7 +18,6 @@ export const validateRegisterForm = (values: RegisterDataInterface) => {
   const errors: ErrorsMesaage = {}
   const { name, email, mobile_phone, password, address, password_confirmation } = values
 
-  if (!validator.isAlpha(name)) errors.name = "Nama tidak boleh mengandung spasi, symbol, atau angka"
   if (!min(name, 4)) errors.name = "Nama harus diisi minimal 4 huruf"
   if (!max(name, 20)) errors.name = "Nama harus diisi maksimal 20 huruf"
 
@@ -58,11 +56,11 @@ export const validateCreateCarForm = (values: CarItemInterface) => {
 
   if (!validator.isAlpha(values.color!)) errors.car_model_year = "Warna hanya boleh mengandung a-z atau A-Z"
 
-  if (values.capacity !< 2) errors.capacity = "Kapasitas minimal 2"
-  if (values.capacity !> 10) errors.capacity = "Kapasitas maksimal 10"
+  if (values.capacity! < 2) errors.capacity = "Kapasitas minimal 2"
+  if (values.capacity! > 10) errors.capacity = "Kapasitas maksimal 10"
 
-  if (!min(values.no_plate, 5)) errors.no_plate = "Plat Nomor Minimal 5"
-  if (!max(values.no_plate, 12)) errors.no_plate = "Plat Nomor Maksimal 12"
+  if (!min(values.no_plate!, 5)) errors.no_plate = "Plat Nomor Minimal 5"
+  if (!max(values.no_plate!, 12)) errors.no_plate = "Plat Nomor Maksimal 12"
 
   return errors
 }

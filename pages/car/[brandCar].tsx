@@ -4,10 +4,13 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { getSingleCar } from 'lib/utils/api'
 import { toTitleCase } from 'lib/utils/stringHelper'
+import { useState } from 'react'
 
 // Components
 import PagesWrapper from 'components/reusable/global/PagesWrapper'
+import RentModal from 'components/reusable/car/RentModal'
 import Container from 'components/reusable/global/Container'
+import ErrNotify from 'components/reusable/global/ErrNofify'
 
 // Interface
 import CarItemInterface from 'lib/interface/CarItemInterface'
@@ -29,7 +32,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: {
       token: token ?? null,
       role: role ?? null,
-      data: response.data
+      data: response.data,
+      car_id: id
     }
   }
 
@@ -38,18 +42,38 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 type Props = {
   token: string | null,
   role: string | null,
-  data: CarItemInterface
+  data: CarItemInterface,
+  car_id: number
 }
 
-const CarDetail: NextPage<Props> = ({ token, role, data }) => {
+type StateResponse = {
+  message: any,
+  status: number
+}
+
+const CarDetail: NextPage<Props> = ({ token, role, data, car_id }) => {
 
   const router = useRouter()
+  const [openRentModal, setOpenRentModal] = useState(false)
+
+  const [response, setResponse] = useState<StateResponse>({
+    message: '',
+    status: 0
+  })
+
+  const clickHandler = () => {
+    if (role === null) return router.push('/login')
+    return setOpenRentModal(!openRentModal)
+  }
 
   return (
     <>
       <Head>
         <title>Deskripsi Mobil</title>
       </Head>
+
+      <ErrNotify response={response} />
+      <RentModal token={token!} car_id={car_id} setResponse={setResponse} isOpen={openRentModal} close={setOpenRentModal} />
 
       <PagesWrapper token={token}>
         <div className='py-14'>
@@ -78,7 +102,7 @@ const CarDetail: NextPage<Props> = ({ token, role, data }) => {
                   <div className='mt-4 border-t-2 border-black/20 pt-2 border-dotted grid grid-cols-12 gap-0'>
 
                     <div className='col-span-4 flex-col flex justify-center p-2'>
-                      <h3 className='font-bold'>{data.color}</h3>
+                      <h3 className='font-bold line-clamp-1'>{data.color}</h3>
                       <p className='text-xs text-black/60 font-medium'>Warna</p>
                     </div>
 
@@ -124,7 +148,7 @@ const CarDetail: NextPage<Props> = ({ token, role, data }) => {
                   </div>
                 </div>
                 <div>
-                  <button disabled={role === 'owner'} className='disabled:bg-green-900 font-bold py-2 px-4 text-center bg-green-600 hover:bg-green-700 text-white w-full'>Sewa Mobil</button>
+                  <button onClick={clickHandler} disabled={role === 'owner'} className='disabled:bg-green-900 font-bold py-2 px-4 text-center bg-green-600 hover:bg-green-700 text-white w-full'>Sewa Mobil</button>
                 </div>
               </div>
 

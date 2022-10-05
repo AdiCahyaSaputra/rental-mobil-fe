@@ -47,7 +47,7 @@ const ProductCard: React.FC<Props> = ({ data, click }) => {
       <div className="p-3 mt-6 bg-gradient-to-r from-black via-black to-black">
 
         <div className='flex items-center justify-between'>
-          <h3 className="tracking-wide line-clamp-1 text-white text-sm font-bold">{toTitleCase(data.owner_name!)}</h3>
+          <h3 className="w-10/12 tracking-wide line-clamp-1 text-white text-sm font-bold">{toTitleCase(data.owner_name!)}</h3>
           <SmallRarrIcon className="w-6 rounded-sm group-hover:bg-green-600/70 group-hover:shadow-md group-hover:shadow-green-600/30 group-hover:translate-x-1 bg-white/30 p-1 aspect-square fill-white" />
         </div>
 
