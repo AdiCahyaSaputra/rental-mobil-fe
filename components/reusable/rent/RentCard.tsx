@@ -1,12 +1,12 @@
 // Lib
-import { useState } from "react"
+import { useState } from 'react'
 
 // Components
-import ModalApproval from "components/reusable/rent/ModalApproval"
+import ModalApproval from 'components/reusable/rent/ModalApproval'
 
 // Interface
-import RentDataInterface from "lib/interface/RentDataInterface"
-import ErrNotify from "../global/ErrNofify"
+import RentDataInterface from 'lib/interface/RentDataInterface'
+import ErrNotify from '../global/ErrNofify'
 
 type Props = {
   car: RentDataInterface,

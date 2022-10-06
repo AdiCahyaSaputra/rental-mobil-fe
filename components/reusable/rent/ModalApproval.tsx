@@ -1,6 +1,6 @@
 // Lib
-import { approveRentCar } from "lib/utils/api"
-import { useRouter } from "next/router"
+import { approveRentCar } from 'lib/utils/api'
+import { useRouter } from 'next/router'
 
 type Props = {
   customer_name: string,

@@ -1,8 +1,8 @@
 // Components
-import Logo from "components/reusable/global/Logo"
-import Container from "components/reusable/global/Container"
-import FooterItem from "components/reusable/footer/FooterItem"
-import GithubInfo from "components/reusable/footer/GithubInfo"
+import Logo from 'components/reusable/global/Logo'
+import Container from 'components/reusable/global/Container'
+import FooterItem from 'components/reusable/footer/FooterItem'
+import GithubInfo from 'components/reusable/footer/GithubInfo'
 
 const layananLainnyaItems = [
   { label: 'FAQ', link: '/faq' },

@@ -1,13 +1,13 @@
 // Lib
-import type { NextPage } from "next"
-import { useRouter } from "next/router"
-import { useState } from "react"
-import Head from "next/head"
+import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Head from 'next/head'
 
 // Components
-import Logo from "components/reusable/global/Logo"
-import RegisterSection from "components/section/auth/RegisterSection"
-import ErrNotify from "components/reusable/global/ErrNofify"
+import Logo from 'components/reusable/global/Logo'
+import RegisterSection from 'components/section/auth/RegisterSection'
+import ErrNotify from 'components/reusable/global/ErrNofify'
 
 type StateResponse = {
   message: any,

@@ -1,12 +1,12 @@
 // Lib
-import { useState } from "react"
+import { useState } from 'react'
 import { Formik, Field } from 'formik'
-import { validateRegisterForm } from "lib/utils/validation"
-import useAuth from "lib/hooks/useAuth"
+import { validateRegisterForm } from 'lib/utils/validation'
+import useAuth from 'lib/hooks/useAuth'
 
 // Components
-import RoleCard from "components/reusable/auth/RoleCard"
-import SubmitButton from "components/reusable/global/SubmitButton"
+import RoleCard from 'components/reusable/auth/RoleCard'
+import SubmitButton from 'components/reusable/global/SubmitButton'
 
 // Interface 
 import RegisterDataInterface from 'lib/interface/RegisterDataInterface'

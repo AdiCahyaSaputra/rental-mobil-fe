@@ -1,20 +1,17 @@
 // Lib
-import { GetServerSideProps, NextPage } from "next";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { rentList } from "lib/utils/api";
+import { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
+import { rentList } from 'lib/utils/api'
 
 // Components
-import Container from "components/reusable/global/Container";
-import PagesWrapper from "components/reusable/global/PagesWrapper";
-import EmptyDataState from "components/reusable/global/EmptyDataState";
-import RentCard from "components/reusable/rent/RentCard";
+import Container from 'components/reusable/global/Container'
+import PagesWrapper from 'components/reusable/global/PagesWrapper'
+import EmptyDataState from 'components/reusable/global/EmptyDataState'
+import RentCard from 'components/reusable/rent/RentCard'
+import BackButton from 'components/reusable/global/BackButton'
 
 // Interface
-import RentDataInterface from "lib/interface/RentDataInterface";
-
-// Icons
-import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
+import RentDataInterface from 'lib/interface/RentDataInterface'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
@@ -50,8 +47,6 @@ type Props = {
 
 const Rent: NextPage<Props> = ({ token, data }) => {
 
-  const router = useRouter()
-
   return (
     <>
       <Head>
@@ -64,10 +59,7 @@ const Rent: NextPage<Props> = ({ token, data }) => {
           <Container>
             <div className='grid grid-cols-12 gap-0 md:gap-2'>
 
-              <div className='flex items-center p-2 bg-white md:border-0 border-2 border-black space-x-2 md:block md:space-x-0 md:justify-self-end md:p-0 md:bg-transparent col-span-12 md:col-span-1'>
-                <SmallLarrIcon onClick={() => router.push('/beranda')} className='cursor-pointer hover:bg-green-600 hover:shadow-md hover:shadow-green-600/30 md:w-8 w-6 aspect-square p-1 bg-black fill-white' />
-                <p className='md:hidden text-lg font-bold tracking-wide uppercase'>Rental</p>
-              </div>
+              <BackButton title="Rental" link="/beranda" />
 
               <div className='bg-white col-span-12 md:col-span-10 p-4'>
 

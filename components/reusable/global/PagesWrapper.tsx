@@ -1,14 +1,14 @@
 // Lib
-import { destroyAccessToken } from "lib/utils/auth"
-import { useRouter } from "next/router"
-import useAuth from "lib/hooks/useAuth"
+import { destroyAccessToken } from 'lib/utils/auth'
+import { useRouter } from 'next/router'
+import useAuth from 'lib/hooks/useAuth'
 
 // Components
-import Navbar from "components/reusable/global/Navbar"
+import Navbar from 'components/reusable/global/Navbar'
 import FooterSection from 'components/section/global/FooterSection'
 
 // Interface
-import NavItemInterface from "lib/interface/NavItemInterface"
+import NavItemInterface from 'lib/interface/NavItemInterface'
 
 // Icons
 import UserIcon from '../../../asset/svg/user.svg'

@@ -1,9 +1,9 @@
 // Interface
-import CarItemInterface from "lib/interface/CarItemInterface"
-import RentDataInterface from "lib/interface/RentDataInterface"
+import CarItemInterface from 'lib/interface/CarItemInterface'
+import RentDataInterface from 'lib/interface/RentDataInterface'
 
 // Utils VAR
-export const BASE_API_URL = "http://localhost:8000/api/v1/"
+export const BASE_API_URL = 'http://localhost:8000/api/v1/'
 
 // Utils FUNCTION
 
@@ -13,13 +13,15 @@ export const BASE_API_URL = "http://localhost:8000/api/v1/"
 * Mendapatkan semua data dari
 * table cars untuk beranda
 *
+* @param page string
+*
 * @returns status number
 * @returns data CarItemInterface
 *
 */
-export const getCars = async () => {
+export const getCars = async (page: string | string[] | number) => {
 
-  const req = await fetch(BASE_API_URL + 'car', {
+  const req = await fetch(`${BASE_API_URL}car?page=${page}`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json'

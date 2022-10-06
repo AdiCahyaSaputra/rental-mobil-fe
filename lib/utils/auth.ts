@@ -1,4 +1,4 @@
-import { NextRouter } from "next/router"
+import { NextRouter } from 'next/router'
 
 export const setAccessToken = async (token: string, role_id: number, router: NextRouter) => {
   const role = ['customer', 'owner']

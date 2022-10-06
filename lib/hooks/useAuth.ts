@@ -1,12 +1,12 @@
 // Lib
-import { setAccessToken } from "lib/utils/auth"
-import { useRouter } from "next/router"
+import { setAccessToken } from 'lib/utils/auth'
+import { useRouter } from 'next/router'
 
 // Interface
-import LoginDataInterface from "lib/interface/LoginDataInterface"
-import RegisterDataInterface from "lib/interface/RegisterDataInterface"
+import LoginDataInterface from 'lib/interface/LoginDataInterface'
+import RegisterDataInterface from 'lib/interface/RegisterDataInterface'
 
-const BASE_API_URL = "http://localhost:8000/api/v1/"
+const BASE_API_URL = 'http://localhost:8000/api/v1/'
 
 const useAuth = () => {
 
@@ -65,6 +65,7 @@ const useAuth = () => {
   }
 
   const logout = async (token: string) => {
+
     const url = BASE_API_URL + 'user/logout'
 
     const req = await fetch(url, {

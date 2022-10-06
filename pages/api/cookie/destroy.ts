@@ -1,5 +1,5 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
-import { deleteCookie } from "cookies-next"
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
+import { deleteCookie } from 'cookies-next'
 
 const handler: NextApiHandler = (req: NextApiRequest, res: NextApiResponse) => {
 

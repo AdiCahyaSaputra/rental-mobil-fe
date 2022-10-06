@@ -1,18 +1,15 @@
 // Lib
-import type { GetServerSideProps, NextPage } from "next"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import { useState } from "react"
+import type { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
+import { useState } from 'react'
 
 // Components
-import Container from "components/reusable/global/Container"
-import PagesWrapper from "components/reusable/global/PagesWrapper"
-import CreateCarSection from "components/section/dashboard/CreateCarSection"
-import ErrNotify from "components/reusable/global/ErrNofify"
-import Logo from "components/reusable/global/Logo"
-
-// Icons
-import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
+import Container from 'components/reusable/global/Container'
+import PagesWrapper from 'components/reusable/global/PagesWrapper'
+import CreateCarSection from 'components/section/dashboard/CreateCarSection'
+import ErrNotify from 'components/reusable/global/ErrNofify'
+import Logo from 'components/reusable/global/Logo'
+import BackButton from 'components/reusable/global/BackButton'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
@@ -39,7 +36,6 @@ type Props = {
 
 const DashboardCreate: NextPage<Props> = ({ token }) => {
 
-  const router = useRouter()
   const [response, setResponse] = useState({
     status: 0,
     message: ''
@@ -59,10 +55,7 @@ const DashboardCreate: NextPage<Props> = ({ token }) => {
           <Container>
             <div className='grid grid-cols-12 gap-0 md:gap-2'>
 
-              <div className='flex items-center p-2 bg-white md:border-0 border-2 border-black space-x-2 md:block md:space-x-0 md:justify-self-end md:p-0 md:bg-transparent col-span-12 md:col-span-1'>
-                <SmallLarrIcon onClick={() => router.push('/dashboard')} className='cursor-pointer hover:bg-green-600 hover:shadow-md hover:shadow-green-600/30 md:w-8 w-6 aspect-square p-1 bg-black fill-white' />
-                <p className='md:hidden text-lg font-bold tracking-wide uppercase'>Form Data</p>
-              </div>
+              <BackButton title="Form Data" link="/dashboard" />
 
               <div className="p-4 bg-white col-span-12 md:col-span-6">
                 <h1 className="text-xl font-bold">Upload/Preview Gambar</h1>

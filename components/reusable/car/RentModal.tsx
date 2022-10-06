@@ -1,6 +1,6 @@
-import { rentCar } from "lib/utils/api"
-import moment from "moment"
-import { useState } from "react"
+import { rentCar } from 'lib/utils/api'
+import moment from 'moment'
+import { useState } from 'react'
 
 type Props = {
   isOpen: boolean,

@@ -1,7 +1,7 @@
 // Lib
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { NextRouter, useRouter } from 'next/router'
 import { getSingleCar } from 'lib/utils/api'
 import { toTitleCase } from 'lib/utils/stringHelper'
 import { useState } from 'react'
@@ -11,12 +11,12 @@ import PagesWrapper from 'components/reusable/global/PagesWrapper'
 import RentModal from 'components/reusable/car/RentModal'
 import Container from 'components/reusable/global/Container'
 import ErrNotify from 'components/reusable/global/ErrNofify'
+import BackButton from 'components/reusable/global/BackButton'
 
 // Interface
 import CarItemInterface from 'lib/interface/CarItemInterface'
 
 // Icons
-import SmallLarrIcon from '../../asset/svg/smalllarr.svg'
 import PinMapIcon from '../../asset/svg/pinmap.svg'
 import TelIcon from '../../asset/svg/tel.svg'
 import MailIcon from '../../asset/svg/mail.svg'
@@ -81,10 +81,7 @@ const CarDetail: NextPage<Props> = ({ token, role, data, car_id }) => {
           <Container>
             <div className='grid grid-cols-12 gap-0 md:gap-2'>
 
-              <div className='flex items-center p-2 bg-white md:border-0 border-2 border-b-0 border-black space-x-2 md:block md:space-x-0 md:justify-self-end md:p-0 md:bg-transparent col-span-12 md:col-span-1'>
-                <SmallLarrIcon onClick={() => router.back()} className='cursor-pointer hover:bg-green-600 hover:shadow-md hover:shadow-green-600/30 md:w-8 w-6 aspect-square p-1 bg-black fill-white' />
-                <p className='md:hidden text-lg font-bold tracking-wide uppercase'>Detail Mobil</p>
-              </div>
+              <BackButton customHandler={(router: NextRouter) => router.back()} title='Detail Mobil' />
 
               <div className='bg-white col-span-12 md:col-span-8'>
                 <div className='p-4 bg-white border-2 border-dashed border-black'>

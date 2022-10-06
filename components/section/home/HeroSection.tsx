@@ -1,8 +1,8 @@
 // Lib
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
 
 // Components
-import Logo from "components/reusable/global/Logo"
+import Logo from 'components/reusable/global/Logo'
 
 const HeroSection: React.FC = () => {
   const router = useRouter()
