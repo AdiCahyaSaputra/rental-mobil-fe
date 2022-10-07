@@ -1,9 +1,9 @@
 // Lib
 import { toTitleCase } from 'lib/utils/stringHelper'
+import { MouseEventHandler } from 'react'
 
 // Interface
 import CarItemInterface from 'lib/interface/CarItemInterface'
-import { MouseEventHandler } from 'react'
 
 // Icons
 import SmallRarrIcon from '../../../asset/svg/smallrarr.svg'
@@ -25,11 +25,8 @@ const ProductCard: React.FC<Props> = ({ data, click }) => {
 
           <ServerStackIcon className={`w-4 aspect-square ${data.status === 'available' ? 'fill-green-600' : 'fill-yellow-600'}`} />
 
-          <p
-            className={`
-            text-sm
-            ${data.status === 'available' ?
-                'text-green-600' : 'text-yellow-600'}
+          <p className={`
+            text-sm ${data.status === 'available' ? 'text-green-600' : 'text-yellow-600'}
           `}>{toTitleCase(data.status)}</p>
 
         </div>
@@ -37,7 +34,6 @@ const ProductCard: React.FC<Props> = ({ data, click }) => {
         <h1 className="line-clamp-1 my-1.5 text-lg tracking-wide font-extrabold">
           {data.brand_car}
         </h1>
-
 
         <p className='text-sm text-black/80 font-medium mt-2'>Kapasitas</p>
         <p className='text-xs mt-1 text-black font-light'>{data.capacity} Orang</p>

@@ -1,6 +1,6 @@
 // Lib
-import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
+import type { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { getCars } from 'lib/utils/api'
 import { nameToUrlFriendly } from 'lib/utils/stringHelper'
@@ -16,34 +16,38 @@ import PaginationNav from 'components/reusable/global/PaginationNav'
 import CarItemInterface from 'lib/interface/CarItemInterface'
 import PaginationInfoInterface from 'lib/interface/PaginationInfoInterface'
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-
-  const { token, role } = ctx.req.cookies
-  const { page } = ctx.query
-
-  const response = await getCars(page! ?? 1)
-
-  const links = response.data.links
+const getPaginationLinks = (links: PaginationInfoInterface['links'][]) => {
 
   links.shift()
   links.pop()
+
+  return {
+    links
+  }
+}
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+
+  const { token, role } = ctx.req.cookies
+  const { id } = ctx.query
+
+  const response = await getCars(id ?? '1')
 
   const paginationInfo = {
     current_page: response.data.current_page,
     next_url: response.data.next_page_url,
     prev_url: response.data.prev_page_url,
-    links
+    ...getPaginationLinks(response.data.links)
   }
 
   return {
     props: {
       token: token ?? null,
-      data: response.data.data ?? [],
       role: role ?? null,
-      paginationInfo
+      paginationInfo,
+      data: response.data.data ?? []
     }
   }
-
 }
 
 type Props = {
@@ -73,7 +77,7 @@ const BerandaHome: NextPage<Props> = ({ token, role, data, paginationInfo }) => 
         <title>Beranda</title>
       </Head>
 
-      <PagesWrapper token={token} role={role!}>
+      <PagesWrapper token={token!} role={role!}>
 
         <div className="py-4 bg-white/60 backdrop-blur-md shadow-md shadow-white/60 sticky top-12 inset-x-0">
           <Search />

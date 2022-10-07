@@ -18,12 +18,12 @@ const PaginationNav: React.FC<Props> = ({ info }) => {
 
   const navClickHandler = (link: string | null, nextOrPrev: number) => {
     if (link) {
-      router.push(`/beranda?page=${nextOrPrev}`)
+      router.push(`/beranda/page/${nextOrPrev}`)
     }
   }
 
   const pageClickHandler = (page: string) => {
-    router.push(`/beranda?page=${page}`)
+    router.push(`/beranda/page/${page}`)
   }
 
   return (

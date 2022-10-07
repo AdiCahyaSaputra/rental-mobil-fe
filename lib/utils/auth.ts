@@ -14,7 +14,7 @@ export const setAccessToken = async (token: string, role_id: number, router: Nex
 
   if (req.status !== 200) return console.log(req.statusText)
 
-  return router.push('/beranda')
+  return router.push('/beranda/page/1')
 }
 
 export const destroyAccessToken = async (router?: NextRouter | null) => {

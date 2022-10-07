@@ -1,10 +1,10 @@
 // Lib
-import { setAccessToken } from 'lib/utils/auth'
 import { useRouter } from 'next/router'
 
 // Interface
 import LoginDataInterface from 'lib/interface/LoginDataInterface'
 import RegisterDataInterface from 'lib/interface/RegisterDataInterface'
+import { setAccessToken } from 'lib/utils/auth'
 
 const BASE_API_URL = 'http://localhost:8000/api/v1/'
 

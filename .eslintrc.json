@@ -1,9 +1,10 @@
 {
   "extends": "next/core-web-vitals",
+  "ignorePatterns": ["node_modules/**", ".git/**", ".next/**"],
   "rules": {
     "quotes": ["error", "single", {
-      "allowTemplateLiterals": true
+      "allowTemplateLiterals": true,
     }],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
   }
 }

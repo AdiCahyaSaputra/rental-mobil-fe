@@ -1,7 +1,8 @@
 type Props = {
   isSubmitting: boolean,
   errors: object,
-  name: string
+  name: string,
+  rateLimiter?: number
 }
 
 const SubmitButton: React.FC<Props> = ({ isSubmitting, errors, name }) => {

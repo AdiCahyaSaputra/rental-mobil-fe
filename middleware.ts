@@ -6,7 +6,7 @@ export const middleware = async (req: NextRequest) => {
   const guest = ['/login', '/registrasi']
 
   // Global URL
-  const global = ['/beranda', '/car', '/test', '/']
+  const global = ['/beranda/:path*', '/car', '/test', '/']
 
   // Don't need middleware 
   for (let url of global) {
@@ -20,7 +20,7 @@ export const middleware = async (req: NextRequest) => {
 
     for (let url of guest) {
       if (req.nextUrl.pathname.startsWith(url)) {
-        return NextResponse.redirect(new URL('/beranda', req.url))
+        return NextResponse.redirect(new URL('/beranda/page/1', req.url))
       }
     }
 
